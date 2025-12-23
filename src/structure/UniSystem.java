@@ -1,21 +1,34 @@
 package structure;
 import model.*;
+import services.SessionManager;
+import services.StudentManager;
+
 import java.util.LinkedList;
 
 public class UniSystem {
     //Data members
-    private LinkedList<Student> sl;
-    private LinkedList<Session> sessions;
+    private static UniSystem instance;
+    private SessionManager sessionManager;
+    private StudentManager studentManager;
 
-    public void createSession (Session s) {
-        sessions.add(s);
+
+    private UniSystem() {
+        sessionManager = new SessionManager();
+        studentManager = new StudentManager();
     }
 
-    public void addStudent(Student s) {
-        sl.add(s);
+    //Mehtod for creatung system (singleton since we dont want many system)
+    public static UniSystem getInstance() {
+        if (instance == null) instance = new UniSystem();
+        return instance;
     }
-    public LinkedList<Student> getStudents() {
-        return sl;
+
+    public SessionManager getSessionManager() {
+        return sessionManager;
+    }
+
+    public StudentManager getStudentManager() {
+        return studentManager;
     }
 
 }
