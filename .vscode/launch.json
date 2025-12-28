@@ -1,0 +1,60 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "gui.Main",
+            "projectName": "UNIPLUS-ENRICHMENT-PROGRAM_83be12e2",
+            "vmArgs": [
+                "--module-path",
+                "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
+                "--add-modules",
+                "javafx.controls,javafx.fxml",
+                "--enable-native-access=javafx.graphics"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Main2",
+            "request": "launch",
+            "mainClass": "Main2",
+            "projectName": "projectgui_9b2a50d"
+            ,"vmArgs": [
+                "--module-path",
+                "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
+                "--add-modules",
+                "javafx.controls,javafx.fxml",
+                "--enable-native-access=javafx.graphics"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "loginpage",
+            "request": "launch",
+            "mainClass": "loginpage",
+            "projectName": "projectgui_9b2a50d",
+            "vmArgs": [
+                "--module-path",
+                "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
+                "--add-modules",
+                "javafx.controls,javafx.fxml",
+                "--enable-native-access=javafx.graphics"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Launch JavaFX App",
+            "request": "launch",
+            "mainClass": "Main",
+            "vmArgs": [
+                "--module-path",
+                "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
+                "--add-modules",
+                "javafx.controls,javafx.fxml",
+                "--enable-native-access=javafx.graphics"
+            ]
+        }
+    ]
+}

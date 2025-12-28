@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane fx:id="root"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.Controller">
+
+    <!-- TOP BAR WITH TOGGLE BUTTON -->
+    <top>
+        <HBox style="-fx-background-color: #252525; -fx-padding: 10;">
+            <Button fx:id="toggleButton" text="&lt;&lt; Hide" 
+                    style="-fx-font-weight: bold; -fx-font-size: 14; -fx-background-color: #3d8c40; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15;"
+                    onAction="#togglePanel"/>
+        </HBox>
+    </top>
+    
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox fx:id="sidePanel" prefWidth="200" style="-fx-background-color: linear-gradient(to bottom, #5a0db5 0%, #1f65d4 100%);">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            
+            <Button text="Button 1" style="-fx-background-color: white; -fx-text-fill: #1f65d4; -fx-font-weight: bold; -fx-background-radius: 5;"/>
+            <Button text="Button 2" style="-fx-background-color: white; -fx-text-fill: #1f65d4; -fx-font-weight: bold; -fx-background-radius: 5;"/>
+            <Region VBox.vgrow="ALWAYS"/> <!-- Spacer -->
+            
+            <!-- CLIP FOR SMOOTH ANIMATION -->
+            <clip>
+                <Rectangle width="200" height="1000"/>
+            </clip>
+        </VBox>
+    </left>
+    
+    <!-- CENTER: YOUR LOGIN CARD -->
+    <center>
+        <StackPane>
+            <!-- Gradient background will be added by Controller -->
+            
+            <VBox fx:id="card"
+                  alignment="CENTER"
+                  spacing="15"
+                  style="
+                      -fx-background-radius: 20;
+                      -fx-background-color: rgba(255,255,255,0.85);
+                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 20, 0, 0, 8);
+                  "
+                  maxWidth="400" prefWidth="400"
+                  maxHeight="250" prefHeight="250">
+
+                <Label text="LOGIN"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+                <TextField fx:id="usernameField"
+                           promptText="Username"
+                           maxWidth="250" prefWidth="250"/>
+
+                <PasswordField fx:id="passwordField"
+                               promptText="Password"
+                               maxWidth="250" prefWidth="250"/>
+
+                <Button fx:id="loginButton"
+                        text="Login"
+                        maxWidth="150" prefWidth="150"
+                        onAction="#handleLogin"/>
+
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>
