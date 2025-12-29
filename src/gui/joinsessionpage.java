@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -18,11 +19,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class makenewsessionpage {
+public class joinsessionpage {
     
     @FXML private BorderPane root;
     @FXML private VBox sidePanel;
     @FXML private StackPane contentPane;
+    @FXML private Label sessionStatusLabel;
     
     private Rectangle gradientRect;
     private double t = 0;
@@ -30,8 +32,13 @@ public class makenewsessionpage {
     
     @FXML
     private void initialize() {
+        System.out.println("JoinSessionController initialized");
+        
         // Setup animated background
         setupAnimatedBackground();
+        
+        // Initialize UI components
+        updateSessionDisplay();
     }
     
     private void setupAnimatedBackground() {
@@ -67,6 +74,14 @@ public class makenewsessionpage {
         timer.start();
     }
     
+    private void updateSessionDisplay() {
+        // TODO: Load actual available sessions from backend
+        // For now, show "No session yet" message
+        if (sessionStatusLabel != null) {
+            sessionStatusLabel.setText("No session available yet");
+        }
+    }
+    
     private Color lerp(Color a, Color b, double t) {
         double r = a.getRed() * (1 - t) + b.getRed() * t;
         double g = a.getGreen() * (1 - t) + b.getGreen() * t;
@@ -98,9 +113,19 @@ public class makenewsessionpage {
     }
     
     @FXML
-    private void handleAddNewSession() {
-        System.out.println("+Add New Session clicked");
-        navigateTo("addnewsession.fxml");
+    private void refreshSessions() {
+        System.out.println("Refreshing available sessions...");
+        
+        // Simulate loading sessions
+        // TODO: Implement actual session loading from backend
+        
+        Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+        infoAlert.setTitle("Refresh");
+        infoAlert.setHeaderText(null);
+        infoAlert.setContentText("Searching for available sessions...");
+        infoAlert.showAndWait();
+        
+        updateSessionDisplay();
     }
     
     // Navigation methods
@@ -112,7 +137,6 @@ public class makenewsessionpage {
     @FXML
     private void handleRegisterClass() {
         navigateTo("joinsession.fxml");
-        // TODO: Implement register class
     }
     
     @FXML
@@ -120,16 +144,10 @@ public class makenewsessionpage {
         navigateTo("joinprivatesession.fxml");
     }
     
-    @FXML
-    private void handleJoinSession() {
-        System.out.println("Join Session clicked");
-        // TODO: Implement join session
-    }
     
     @FXML
     private void handleMakeClass() {
-        // Already on this page, do nothing or refresh
-        System.out.println("Already on Create New Session page");
+        navigateTo("makenewsession.fxml");
     }
     
     @FXML
@@ -157,6 +175,14 @@ public class makenewsessionpage {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    
+    private void showInfo(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
