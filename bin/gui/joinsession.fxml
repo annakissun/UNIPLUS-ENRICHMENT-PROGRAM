@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.dashboardpage">
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.joinsessionpage">
 
           <!-- TOP BAR WITH TOGGLE BUTTON -->
     <top>
@@ -34,13 +33,12 @@
                 <VBox prefHeight="236.0" prefWidth="430.0" spacing="15" style="-fx-padding: 20 0;" />
             <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #f5f5f5; -fx-padding: 40; -fx-background-radius: 20; -fx-alignment: center;">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="349.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Registered Session">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="349.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Join Session">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="No registered classes yet" />
-                  <Hyperlink onAction="#handleRegisterClass" text="Browse available classes" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="No session yet" />
                </children>
             </VBox>
             </VBox>
@@ -49,13 +47,16 @@
                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
                  <Text style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-fill: #333;" text="WELCOME" />
-            <Button layoutX="30.0" layoutY="251.0" onAction="#handleDashboard" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: linear-gradient(    to right,    #8DB9FF,    #D3C2FF,    #FFC1E8); -fx-background-radius: 5; -fx-padding: 10;" text="Dashboard">
+            <Button layoutX="30.0" layoutY="251.0" onAction="#handleDashboard" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-padding: 10;" text="Dashboard">
                <font>
-                  <Font name="System Bold Italic" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
             </Button>
                
-                              <Button onAction="#handleRegisterClass" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Session" />
+                              <Button onAction="#handleRegisterClass" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: linear-gradient(    to right,    #8DB9FF,    #D3C2FF,    #FFC1E8); -fx-background-radius: 5; -fx-padding: 10;" text="Join Session">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Button>
                <Button onAction="#handleJoinClass" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Private Session" />
                <Button onAction="#handleMakeClass" prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Create New Session" />
                <Button onAction="#handleLogout" prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="LOG OUT" />
