@@ -134,7 +134,7 @@ public class signuppage {
         if (errors.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Validation Error");
-            alert.setHeaderText("Please fix the following errors:");
+            alert.setHeaderText("Please fix the following errors nigga:");
             alert.setContentText(errors.toString());
             alert.showAndWait();
             return false;

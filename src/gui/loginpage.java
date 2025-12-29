@@ -10,6 +10,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import structure.UniSystem;
 
 public class loginpage {
     
@@ -19,6 +20,8 @@ public class loginpage {
     @FXML private PasswordField passwordField;
     @FXML private Button loginButton;
     @FXML private Hyperlink signupLink;
+    
+    private UniSystem system = UniSystem.getInstance();
     
     private Rectangle gradientRect;
     private double t = 0;
@@ -67,18 +70,27 @@ public class loginpage {
     }
     
     @FXML
-private void handleLogin() {
-    // Simply navigate to dashboard
-    try {
-        Stage stage = (Stage) root.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
-        Scene scene = new Scene(loader.load());
-        stage.setScene(scene);
-        stage.centerOnScreen();
-    } catch (Exception e) {
-        e.printStackTrace();
+    private void handleLogin() {
+        try {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            boolean success = system.getAuthService().login(username, password);
+
+            if (success) {
+                Stage stage = (Stage) root.getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+                stage.centerOnScreen();
+            } else {
+                System.out.println("Invalid username or password lol");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
+
     
     // ADD THIS METHOD - Navigation to Signup Page
     @FXML
@@ -93,8 +105,7 @@ private void handleLogin() {
             
             // Apply same window size
             stage.setScene(scene);
-            stage.centerOnScreen();
-            
+            stage.centerOnScreen();        
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -102,6 +113,15 @@ private void handleLogin() {
             alert.setHeaderText("Cannot load signup page");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
+        }
+    }
+
+    public void handleSignUp(){
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        boolean success = system.getAuthService().signup(username, password,"Guest");
+        if (success) {
+            System.out.println("yes");
         }
     }
 }

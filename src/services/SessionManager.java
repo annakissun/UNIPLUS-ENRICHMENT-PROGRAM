@@ -8,31 +8,40 @@ public class SessionManager {
     private LinkedList<Session> sessions = new LinkedList<>();
 
     // Add a new session
-    public void createSession(int capacity, String host, String subject) {
-        Session newSession = new Session(capacity, host, subject);
+    public void createSession(int capacity, String host, String subject, boolean isPrivate, String location) {
+        // Create session properly
+        Session newSession = new Session(capacity, host, subject, location, isPrivate);
         sessions.add(newSession);
-        System.out.println("Session created: " + newSession.getCode() + " - " + subject);
+
+        if (newSession.isPrivate()) {
+            System.out.println("Private session created: " + newSession.getJoinCode() + " - " + subject);
+        } else {
+            System.out.println("Public session created: " + subject);
+        }
     }
 
-    // Remove a session by session code
+    // Remove a session by session code (public sessions only)
     public boolean removeSession(String code) {
+        if (code == null) return false; // public sessions have a code
+
         Iterator<Session> iterator = sessions.iterator();
         while (iterator.hasNext()) {
             Session session = iterator.next();
-            if (session.getCode().equals(code)) {
+            if (!session.isPrivate() && code.equals(session.getJoinCode())) {
                 iterator.remove();
                 System.out.println("Session removed: " + code);
                 return true;
             }
         }
-        System.out.println("Session not found: " + code);
+        System.out.println("Public session not found: " + code);
         return false;
     }
 
-    // Remove a session by Session object
+    // Remove a session by Session object (works for any session)
     public boolean removeSession(Session sessionToRemove) {
         if (sessions.remove(sessionToRemove)) {
-            System.out.println("Session removed: " + sessionToRemove.getCode());
+            String code = sessionToRemove.isPrivate() ? sessionToRemove.getJoinCode() : "no code";
+            System.out.println("Session removed: " + code);
             return true;
         }
         System.out.println("Session not found in list");
@@ -44,17 +53,19 @@ public class SessionManager {
         return sessions;
     }
 
-    // Find/search for a session by code
+    // Find/search for a session by code (only public sessions)
     public Session findSession(String code) {
+        if (code == null) return null;
+
         for (Session session : sessions) {
-            if (session.getCode().equals(code)) {
+            if (!session.isPrivate() && code.equals(session.getJoinCode())) {
                 return session;
             }
         }
         return null;
     }
 
-    // Check if session exists by code
+    // Check if session exists by code (public only)
     public boolean sessionExists(String code) {
         return findSession(code) != null;
     }
@@ -82,9 +93,13 @@ public class SessionManager {
             System.out.println("No sessions available.");
             return;
         }
-        
+
         for (Session session : sessions) {
-            System.out.println("Code: " + session.getCode());
+            if (!session.isPrivate()) {
+                System.out.println("Code: " + session.getJoinCode());
+            } else {
+                System.out.println("Private session");
+            }
             System.out.println("Subject: " + session.getSubject());
             System.out.println("Host: " + session.getHost());
             System.out.println("Capacity: " + session.getCapacity());
