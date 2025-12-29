@@ -1,12 +1,12 @@
 package gui;
 
 import javafx.animation.AnimationTimer;
-import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -17,12 +17,19 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.animation.TranslateTransition;
 
-public class dashboardpage {
+public class addnewsessionpage {
     
     @FXML private BorderPane root;
     @FXML private VBox sidePanel;
     @FXML private StackPane contentPane;
+    
+    // TextFields for session form
+    @FXML private TextField subjectField;
+    @FXML private TextField locationField;
+    @FXML private TextField descriptionField;
+    @FXML private TextField timeField;
     
     private Rectangle gradientRect;
     private double t = 0;
@@ -32,6 +39,10 @@ public class dashboardpage {
     private void initialize() {
         // Setup animated background
         setupAnimatedBackground();
+        
+        // Set proper field IDs based on FXML
+        // Since FXML uses different IDs, we need to find them
+        setupFieldReferences();
     }
     
     private void setupAnimatedBackground() {
@@ -67,6 +78,23 @@ public class dashboardpage {
         timer.start();
     }
     
+    private void setupFieldReferences() {
+        // Find text fields by their IDs from FXML
+        if (subjectField == null) {
+            // Try to find by looking up
+            subjectField = (TextField) root.lookup("#usernameField");
+        }
+        if (locationField == null) {
+            locationField = (TextField) root.lookup("#usernameField1");
+        }
+        if (descriptionField == null) {
+            descriptionField = (TextField) root.lookup("#usernameField11");
+        }
+        if (timeField == null) {
+            timeField = (TextField) root.lookup("#usernameField111");
+        }
+    }
+    
     private Color lerp(Color a, Color b, double t) {
         double r = a.getRed() * (1 - t) + b.getRed() * t;
         double g = a.getGreen() * (1 - t) + b.getGreen() * t;
@@ -97,39 +125,84 @@ public class dashboardpage {
         panelVisible = !panelVisible;
     }
     
+    @FXML
+    private void createSession() {
+        System.out.println("Create Session button clicked");
+        
+        // Get values from fields
+        String subject = subjectField != null ? subjectField.getText() : "";
+        String location = locationField != null ? locationField.getText() : "";
+        String description = descriptionField != null ? descriptionField.getText() : "";
+        String time = timeField != null ? timeField.getText() : "";
+        
+        // Validation
+        if (subject.isEmpty() || location.isEmpty() || time.isEmpty()) {
+            showError("Validation Error", "Please fill in all required fields (Subject, Location, Time)");
+            return;
+        }
+        
+        // Here you would save the session to database or data structure
+        System.out.println("Creating new session:");
+        System.out.println("Subject: " + subject);
+        System.out.println("Location: " + location);
+        System.out.println("Description: " + description);
+        System.out.println("Time: " + time);
+        
+        // Show success message
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+        successAlert.setTitle("Success");
+        successAlert.setHeaderText("Session Created");
+        successAlert.setContentText("New session has been created successfully!");
+        successAlert.showAndWait();
+        
+        // Navigate back to makenewsession.fxml after creation
+        try {
+            Stage stage = (Stage) root.getScene().getWindow();
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("makenewsession.fxml"));
+            Scene scene = new Scene(loader.load());
+            
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            showError("Navigation Error", "Cannot return to session list");
+        }
+    }
+    
     // Navigation methods
     @FXML
     private void handleDashboard() {
-        // Already on dashboard, do nothing
-        System.out.println("Already on Dashboard");
+        navigateTo("dashboard.fxml");
     }
     
     @FXML
     private void handleRegisterClass() {
-        System.out.println("Register New Class clicked");
-        // TODO: Create registerclass.fxml and implement this
+        System.out.println("Register Class clicked");
+        // TODO: Implement register class
     }
     
     @FXML
     private void handleJoinClass() {
         System.out.println("Join Private Class clicked");
-        // TODO: Create joinclass.fxml and implement this
+        // TODO: Implement join private class
     }
     
     @FXML
     private void handleJoinSession() {
         System.out.println("Join Session clicked");
-        // TODO: Create joinsession.fxml and implement this
-    }
-
-    @FXML
-    private void handleLogout() {
-        navigateTo("logoutt.fxml");
+        // TODO: Implement join session
     }
     
     @FXML
     private void handleMakeClass() {
         navigateTo("makenewsession.fxml");
+    }
+    
+    @FXML
+    private void handleLogout() {
+        navigateTo("logoutt.fxml");
     }
     
     private void navigateTo(String fxmlFile) {

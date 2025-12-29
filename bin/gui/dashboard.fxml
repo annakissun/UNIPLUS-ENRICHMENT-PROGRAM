@@ -34,13 +34,14 @@
                 
                 <!-- Registered Class Section (Empty/No classes registered) -->
                 <VBox spacing="15" style="-fx-padding: 20 0;">
-                    <Label prefHeight="54.0" prefWidth="176.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Registered Class">
-                  <font>
-                     <Font size="26.0" />
-                  </font></Label>
                     
                     <!-- Empty state message -->
                     <VBox alignment="CENTER" spacing="10" style="-fx-padding: 40; -fx-background-color: #f5f5f5; -fx-background-radius: 10;">
+                       <Label prefHeight="54.0" prefWidth="176.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Registered Class">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
                         <Label style="-fx-font-size: 18px; -fx-text-fill: #888;" text="No registered classes yet" />
                         <Hyperlink onAction="#handleJoinClass" style="-fx-font-size: 14px; -fx-text-fill: #2196F3;" text="Browse available classes" />
                     </VBox>
@@ -81,13 +82,13 @@
                </font>
             </Button>
                
-               <Button onAction="#handleRegisterClass" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Register New Session" />
+                        <Button onAction="#handleRegisterClass" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Session" />
                <Button onAction="#handleJoinClass" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Private Session" />
-               <Button onAction="#handleMakeClass" prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Make New Session" />
+               <Button onAction="#handleMakeClass" prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Create New Session" />
                <Button onAction="#handleLogout" prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="LOG OUT" />
                <Region VBox.vgrow="ALWAYS" />
                
-               <!-- CLIP FOR SMOOTH ANIMATION -->
+                        <!-- CLIP FOR SMOOTH ANIMATION -->
                <clip>
                    <Rectangle height="1000" width="200" />
                </clip>

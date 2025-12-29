@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.dashboardpage">
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.makenewsessionpage">
 
     <!-- TOP BAR WITH TOGGLE BUTTON -->
     <top>
@@ -34,25 +33,25 @@
                 
                 <!-- Registered Class Section (Empty/No classes registered) -->
                 <VBox spacing="15" style="-fx-padding: 20 0;">
-                    <Label prefHeight="54.0" prefWidth="176.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Create New Session">
-                  <font>
-                     <Font size="26.0" />
-                  </font></Label>
                <VBox prefHeight="200.0" prefWidth="233.0">
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
                </VBox>
-               <Button mnemonicParsing="false" style="-fx-background-color: linear-gradient(    to right,    #8DB9FF,    #D3C2FF,    #FFC1E8);" text="+Add New Session" textFill="WHITE">
-                  <VBox.margin>
-                     <Insets />
-                  </VBox.margin>
-               </Button>
                     
                     <!-- Empty state message -->
                     <VBox alignment="CENTER" spacing="10" style="-fx-padding: 40; -fx-background-color: #f5f5f5; -fx-background-radius: 10;">
+                       <Label prefHeight="54.0" prefWidth="226.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Create New Session">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
                         <Label style="-fx-font-size: 18px; -fx-text-fill: #888;" text="No session created" />
-                        <Hyperlink onAction="#handleJoinClass" style="-fx-font-size: 14px; -fx-text-fill: #2196F3;" text="Create one by clicking +Add New Session !" />
+                  <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleAddNewSession" style="-fx-background-color: linear-gradient(    to right,    #8DB9FF,    #D3C2FF,    #FFC1E8);" text="+Add New Session" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
                     </VBox>
                     
                     <!-- SAMPLE CLASS CARDS (Comment these out for empty dashboard) -->
@@ -85,23 +84,23 @@
                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
                  <Text style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-fill: #333;" text="WELCOME" />
-            <Button layoutX="30.0" layoutY="251.0" onAction="#handleMakeClass" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-padding: 10;" text="Dashboard">
+            <Button layoutX="30.0" layoutY="251.0" onAction="#handleDashboard" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-padding: 10;" text="Dashboard">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
                
-                                 <Button onAction="#handleRegisterClass" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Session" />
-               <Button onAction="#handleJoinClass" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Private Session" />
+                                       <Button onAction="#handleJoinClass" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Session" />
+               <Button onAction="#handleJoinSession" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Private Session" />
                <Button onAction="#handleMakeClass" prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: linear-gradient(    to right,    #8DB9FF,    #D3C2FF,    #FFC1E8); -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Create New Session">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Button>
-               <Button prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="LOG OUT" />
+               <Button onAction="#handleLogout" prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="LOG OUT" />
                <Region VBox.vgrow="ALWAYS" />
                
-                                 <!-- CLIP FOR SMOOTH ANIMATION -->
+                                       <!-- CLIP FOR SMOOTH ANIMATION -->
                <clip>
                    <Rectangle height="1000" width="200" />
                </clip>
