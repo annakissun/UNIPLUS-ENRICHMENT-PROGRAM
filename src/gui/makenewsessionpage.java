@@ -1,30 +1,36 @@
 package gui;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
-public class logoutpage {
+public class makenewsessionpage {
     
     @FXML private BorderPane root;
-    @FXML private StackPane centerPane;
+    @FXML private VBox sidePanel;
+    @FXML private StackPane contentPane;
     
     private Rectangle gradientRect;
     private double t = 0;
+    private boolean panelVisible = true;
     
     @FXML
     private void initialize() {
-        // Create animated background
+        // Setup animated background
         setupAnimatedBackground();
     }
     
@@ -33,9 +39,7 @@ public class logoutpage {
         gradientRect.widthProperty().bind(root.widthProperty());
         gradientRect.heightProperty().bind(root.heightProperty());
         
-        // Add gradient background behind the card
-        StackPane backgroundPane = (StackPane) root.getCenter();
-        backgroundPane.getChildren().add(0, gradientRect);
+        contentPane.getChildren().add(0, gradientRect);
         
         // Animated gradient timer
         AnimationTimer timer = new AnimationTimer() {
@@ -71,43 +75,82 @@ public class logoutpage {
     }
     
     @FXML
-    private void handleYes() {
-        System.out.println("User confirmed logout");
+    private void togglePanel() {
+        TranslateTransition transition = new TranslateTransition(Duration.millis(300), sidePanel);
         
-        try {
-            // Navigate to login page atau shutdown
-            Stage stage = (Stage) root.getScene().getWindow();
-            
-            
-            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-            stage.centerOnScreen();
-
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            showError("Logout failed", e.getMessage());
+        if (panelVisible) {
+            // Hide panel
+            transition.setToX(-sidePanel.getWidth());
+            transition.setOnFinished(e -> {
+                root.setLeft(null);
+                ((Button) root.getTop().lookup("#toggleButton")).setText("Show");
+            });
+        } else {
+            // Show panel
+            root.setLeft(sidePanel);
+            sidePanel.setTranslateX(-sidePanel.getWidth());
+            transition.setToX(0);
+            ((Button) root.getTop().lookup("#toggleButton")).setText("Hide");
         }
+        
+        transition.play();
+        panelVisible = !panelVisible;
     }
     
     @FXML
-    private void handleNo() {
-        System.out.println("User cancelled logout");
-        
+    private void handleAddNewSession() {
+        System.out.println("+Add New Session clicked");
+        navigateTo("addnewsession.fxml");
+    }
+    
+    // Navigation methods
+    @FXML
+    private void handleDashboard() {
+        navigateTo("dashboard.fxml");
+    }
+    
+    @FXML
+    private void handleRegisterClass() {
+        System.out.println("Register Class clicked");
+        // TODO: Implement register class
+    }
+    
+    @FXML
+    private void handleJoinClass() {
+        System.out.println("Join Private Class clicked");
+        // TODO: Implement join private class
+    }
+    
+    @FXML
+    private void handleJoinSession() {
+        System.out.println("Join Session clicked");
+        // TODO: Implement join session
+    }
+    
+    @FXML
+    private void handleMakeClass() {
+        // Already on this page, do nothing or refresh
+        System.out.println("Already on Create New Session page");
+    }
+    
+    @FXML
+    private void handleLogout() {
+        navigateTo("logoutt.fxml");
+    }
+    
+    private void navigateTo(String fxmlFile) {
         try {
-            // Go back to dashboard
             Stage stage = (Stage) root.getScene().getWindow();
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Scene scene = new Scene(loader.load());
+            
             stage.setScene(scene);
             stage.centerOnScreen();
             
         } catch (Exception e) {
             e.printStackTrace();
-            showError("Navigation failed", e.getMessage());
+            showError("Navigation Error", "Cannot load " + fxmlFile);
         }
     }
     
