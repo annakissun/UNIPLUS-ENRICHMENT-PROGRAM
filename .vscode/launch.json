@@ -3,10 +3,38 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BackgroundAnimator",
+            "request": "launch",
+            "mainClass": "gui.BackgroundAnimator",
+            "projectName": "projectgui_9b2a50d",
+  "vmArgs": [
+                "--module-path",
+                "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
+                "--add-modules",
+                "javafx.controls,javafx.fxml",
+                "--enable-native-access=javafx.graphics"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Harris",
+            "request": "launch",
+            "mainClass": "gui.Harris",
+            "projectName": "projectgui_9b2a50d",
+            "vmArgs": [
+                "--module-path",
+                "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
+                "--add-modules",
+                "javafx.controls,javafx.fxml",
+                "--enable-native-access=javafx.graphics"
+            ]
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "gui.Main",
-            "projectName": "UNIPLUS-ENRICHMENT-PROGRAM_83be12e2",
+            "projectName": "projectgui_9b2a50d",
             "vmArgs": [
                 "--module-path",
                 "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
@@ -20,8 +48,8 @@
             "name": "Main2",
             "request": "launch",
             "mainClass": "Main2",
-            "projectName": "projectgui_9b2a50d"
-            ,"vmArgs": [
+            "projectName": "projectgui_9b2a50d",
+            "vmArgs": [
                 "--module-path",
                 "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
                 "--add-modules",
@@ -34,14 +62,7 @@
             "name": "loginpage",
             "request": "launch",
             "mainClass": "loginpage",
-            "projectName": "projectgui_9b2a50d",
-            "vmArgs": [
-                "--module-path",
-                "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
-                "--add-modules",
-                "javafx.controls,javafx.fxml",
-                "--enable-native-access=javafx.graphics"
-            ]
+            "projectName": "projectgui_9b2a50d"
         },
         {
             "type": "java",
