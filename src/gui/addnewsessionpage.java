@@ -30,6 +30,8 @@ public class addnewsessionpage {
     @FXML private TextField locationField;
     @FXML private TextField descriptionField;
     @FXML private TextField timeField;
+    @FXML private TextField capacityField;
+
     
     private Rectangle gradientRect;
     private double t = 0;
@@ -92,6 +94,9 @@ public class addnewsessionpage {
         }
         if (timeField == null) {
             timeField = (TextField) root.lookup("#usernameField111");
+        }
+        if (capacityField == null) {
+            timeField = (TextField) root.lookup("#usernameField1111");
         }
     }
     
