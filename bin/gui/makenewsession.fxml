@@ -90,8 +90,8 @@
                </font>
             </Button>
                
-                                       <Button onAction="#handleJoinClass" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Session" />
-               <Button onAction="#handleJoinSession" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Private Session" />
+                                       <Button onAction="#handleRegisterClass" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Session" />
+               <Button onAction="#handleJoinClass" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Private Session" />
                <Button onAction="#handleMakeClass" prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: linear-gradient(    to right,    #8DB9FF,    #D3C2FF,    #FFC1E8); -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Create New Session">
                <font>
                   <Font name="System Bold Italic" size="12.0" />

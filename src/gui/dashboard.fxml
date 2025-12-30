@@ -15,7 +15,7 @@
 
 <BorderPane fx:id="root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.dashboardpage">
 
-    <!-- TOP BAR WITH TOGGLE BUTTON -->
+          <!-- TOP BAR WITH TOGGLE BUTTON -->
     <top>
         <HBox style="-fx-background-color: white; -fx-padding: 10;">
          <children>
@@ -24,71 +24,44 @@
         </HBox>
     </top>
     
-    <!-- CENTER CONTENT -->
+          <!-- CENTER CONTENT -->
     <center>
         <StackPane fx:id="contentPane">
             <!-- Welcome and Dashboard Section -->
             <VBox spacing="20" style="-fx-padding: 30;">
-                <!-- Welcome Section -->
-                <VBox spacing="10" />
                 
-                <!-- Registered Class Section (Empty/No classes registered) -->
-                <VBox spacing="15" style="-fx-padding: 20 0;">
-                    
-                    <!-- Empty state message -->
-                    <VBox alignment="CENTER" spacing="10" style="-fx-padding: 40; -fx-background-color: #f5f5f5; -fx-background-radius: 10;">
-                       <Label prefHeight="54.0" prefWidth="176.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Registered Class">
+                      <!-- Registered Class Section (Empty/No classes registered) -->
+                <VBox prefHeight="236.0" prefWidth="430.0" spacing="15" style="-fx-padding: 20 0;" />
+            <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #f5f5f5; -fx-padding: 40; -fx-background-radius: 20; -fx-alignment: center;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="349.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Registered Session">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                        <Label style="-fx-font-size: 18px; -fx-text-fill: #888;" text="No registered classes yet" />
-                        <Hyperlink onAction="#handleJoinClass" style="-fx-font-size: 14px; -fx-text-fill: #2196F3;" text="Browse available classes" />
-                    </VBox>
-                    
-                    <!-- SAMPLE CLASS CARDS (Comment these out for empty dashboard) -->
-                     <!--
-                    <VBox spacing="10" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-border-width: 1;">
-                        <HBox alignment="CENTER_LEFT" spacing="10">
-                            <VBox spacing="5">
-                                <Text style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #333;" text="MAT 113 - Calculus I" />
-                                <Text style="-fx-font-size: 14px; -fx-fill: #666;" text="INSTRUCTOR: NURUL" />
-                            </VBox>
-                            <Region HBox.hgrow="ALWAYS" />
-                            <Button style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20; -fx-background-radius: 5;" text="VIEW CLASS" />
-                        </HBox>
-                        <HBox spacing="30">
-                            <VBox spacing="5">
-                                <Text style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-fill: #555;" text="FRI: 1 - 2 PM" />
-                                <Text style="-fx-font-size: 12px; -fx-fill: #777;" text="TIME" />
-                            </VBox>
-                            <VBox spacing="5">
-                                <Text style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-fill: #555;" text="BK10" />
-                                <Text style="-fx-font-size: 12px; -fx-fill: #777;" text="LOCATION" />
-                            </VBox>
-                        </HBox>
-                    </VBox>
-                    -->
-                </VBox>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="No registered classes yet" />
+                  <Hyperlink onAction="#handleRegisterClass" text="Browse available classes" />
+               </children>
+            </VBox>
             </VBox>
            <VBox fx:id="sidePanel" prefHeight="408.0" prefWidth="174.0" spacing="35.0" style="-fx-background-color: WHITE;">
                <padding>
                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
                  <Text style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-fill: #333;" text="WELCOME" />
-            <Button layoutX="30.0" layoutY="251.0" onAction="#handleMakeClass" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: linear-gradient(    to right,    #8DB9FF,    #D3C2FF,    #FFC1E8); -fx-background-radius: 5; -fx-padding: 10;" text="Dashboard">
+            <Button layoutX="30.0" layoutY="251.0" onAction="#handleDashboard" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: linear-gradient(    to right,    #8DB9FF,    #D3C2FF,    #FFC1E8); -fx-background-radius: 5; -fx-padding: 10;" text="Dashboard">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Button>
                
-                        <Button onAction="#handleRegisterClass" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Session" />
+                              <Button onAction="#handleRegisterClass" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Session" />
                <Button onAction="#handleJoinClass" prefHeight="38.0" prefWidth="138.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Join Private Session" />
                <Button onAction="#handleMakeClass" prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="Create New Session" />
                <Button onAction="#handleLogout" prefHeight="38.0" prefWidth="147.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;" text="LOG OUT" />
                <Region VBox.vgrow="ALWAYS" />
                
-                        <!-- CLIP FOR SMOOTH ANIMATION -->
+                              <!-- CLIP FOR SMOOTH ANIMATION -->
                <clip>
                    <Rectangle height="1000" width="200" />
                </clip>
@@ -96,4 +69,4 @@
         </StackPane>
     </center>
 
-</BorderPane>
+      </BorderPane>

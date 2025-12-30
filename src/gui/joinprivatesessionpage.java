@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -18,11 +19,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class makenewsessionpage {
+public class joinprivatesessionpage {
     
     @FXML private BorderPane root;
     @FXML private VBox sidePanel;
     @FXML private StackPane contentPane;
+    @FXML private TextField usernameField; // Changed to match FXML
     
     private Rectangle gradientRect;
     private double t = 0;
@@ -30,6 +32,8 @@ public class makenewsessionpage {
     
     @FXML
     private void initialize() {
+        System.out.println("JoinPrivateSessionController initialized");
+        
         // Setup animated background
         setupAnimatedBackground();
     }
@@ -98,9 +102,42 @@ public class makenewsessionpage {
     }
     
     @FXML
-    private void handleAddNewSession() {
-        System.out.println("+Add New Session clicked");
-        navigateTo("addnewsession.fxml");
+    private void createSession() { // Changed method name to match FXML
+        System.out.println("Join Session button clicked");
+        
+        // Get session code from field
+        String sessionCode = usernameField != null ? usernameField.getText().trim() : "";
+        
+        // Validation
+        if (sessionCode.isEmpty()) {
+            showError("Validation Error", "Please enter a session code");
+            return;
+        }
+        
+        // Here you would validate the session code with your backend/database
+        System.out.println("Attempting to join session with code: " + sessionCode);
+        
+        // Simulate validation
+        if (validateSessionCode(sessionCode)) {
+            // Success - show message and navigate to dashboard
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Success");
+            successAlert.setHeaderText("Session Joined");
+            successAlert.setContentText("You have successfully joined the private session!");
+            successAlert.showAndWait();
+            
+            // Navigate to dashboard
+            navigateTo("dashboard.fxml");
+        } else {
+            // Invalid session code
+            showError("Invalid Session", "The session code you entered is invalid or expired.");
+        }
+    }
+    
+    private boolean validateSessionCode(String sessionCode) {
+        // TODO: Implement actual session code validation
+        // For now, accept any non-empty code that looks like a session code
+        return sessionCode.length() >= 4 && sessionCode.matches("[A-Za-z0-9]+");
     }
     
     // Navigation methods
@@ -111,25 +148,25 @@ public class makenewsessionpage {
     
     @FXML
     private void handleRegisterClass() {
+        System.out.println("Register Class clicked");
         navigateTo("joinsession.fxml");
-        // TODO: Implement register class
     }
     
     @FXML
     private void handleJoinClass() {
-        navigateTo("joinprivatesession.fxml");
+        // Already on this page
+        System.out.println("Already on Join Private Session page");
     }
     
     @FXML
     private void handleJoinSession() {
         System.out.println("Join Session clicked");
-        // TODO: Implement join session
+        navigateTo("joinsession.fxml");
     }
     
     @FXML
     private void handleMakeClass() {
-        // Already on this page, do nothing or refresh
-        System.out.println("Already on Create New Session page");
+        navigateTo("makenewsession.fxml");
     }
     
     @FXML
@@ -157,6 +194,14 @@ public class makenewsessionpage {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    
+    private void showInfo(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }

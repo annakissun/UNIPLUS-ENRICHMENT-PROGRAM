@@ -179,14 +179,13 @@ public class addnewsessionpage {
     
     @FXML
     private void handleRegisterClass() {
-        System.out.println("Register Class clicked");
+        navigateTo("joinsession.fxml");
         // TODO: Implement register class
     }
     
     @FXML
     private void handleJoinClass() {
-        System.out.println("Join Private Class clicked");
-        // TODO: Implement join private class
+        navigateTo("joinprivatesession.fxml");
     }
     
     @FXML

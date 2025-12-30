@@ -106,14 +106,13 @@ public class dashboardpage {
     
     @FXML
     private void handleRegisterClass() {
-        System.out.println("Register New Class clicked");
+         navigateTo("joinsession.fxml");
         // TODO: Create registerclass.fxml and implement this
     }
     
     @FXML
     private void handleJoinClass() {
-        System.out.println("Join Private Class clicked");
-        // TODO: Create joinclass.fxml and implement this
+        navigateTo("joinprivatesession.fxml");
     }
     
     @FXML
@@ -155,4 +154,5 @@ public class dashboardpage {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
 }
