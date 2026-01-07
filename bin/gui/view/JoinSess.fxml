@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller.JoinSessCTRL">
+   <children>
+          
+                            <!-- Empty state message -->
+          <VBox fx:id="emptyStateBox" alignment="CENTER" maxHeight="400.0" maxWidth="900.0" prefHeight="600.0" prefWidth="400.0" spacing="10" style="-fx-padding: 40; -fx-background-color: #f5f5f5; -fx-background-radius: 20;">
+              <Label fx:id="Label" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Available Sessions">
+                  <font>
+                      <Font size="26.0" />
+                  </font>
+              </Label>
+              <Label fx:id="Label2" style="-fx-font-size: 18px; -fx-text-fill: #888;" text="No sessions available yet" />
+              <Button fx:id="refreshButton" onAction="#refreshSessions" style="-fx-background-color: linear-gradient(to right, #8DB9FF, #D3C2FF, #FFC1E8); -fx-text-fill: white; -fx-padding: 8 20;" text="Refresh Sessions" />
+          </VBox>
+   </children>
+</StackPane>

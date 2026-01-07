@@ -1,7 +1,6 @@
 package structure;
 import services.*;
 
-
 public class UniSystem {
     //Data members
     private static UniSystem instance;
@@ -13,6 +12,7 @@ public class UniSystem {
         sessionManager = new SessionManager();
         studentManager = new StudentManager();
         authService = new AuthService();  // Initialize it
+
     }
 
     // Singleton method

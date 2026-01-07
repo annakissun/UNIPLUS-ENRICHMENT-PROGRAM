@@ -2,122 +2,103 @@ package services;
 
 import model.User;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class AuthService {
-    private Scanner scan = new Scanner(System.in);
-    private LinkedList<User> users = new LinkedList<>(); // using LinkedList
-    private boolean isLoggedIn = false;
-    private User currentUser = null;
+
+    private LinkedList<User> users = new LinkedList<>();
+    private User currentUser;
 
     public AuthService() {
-        // Default users
-        users.add(new User("admin", "admin123", "admin"));
-        users.add(new User("lecturer", "lecturer123", "lecturer"));
-        users.add(new User("student", "student123", "student"));
+        // ===== Default & dummy users =====
+        users.add(new User("System Admin", "admin@uni.edu", "admin", "admin123", "admin"));
+        users.add(new User("Dr John Lecturer", "john@uni.edu", "lecturer1", "lect123", "lecturer"));
+        users.add(new User("Alice Student", "alice@uni.edu", "student1", "stud123", "student"));
+        users.add(new User("Guest User", "guest@uni.edu", "guest1", "guest123", "guest"));
+        users.add(new User("Muhammad Fahmi", "fahmi@gmail.com", "fahmi", "123", "student"));
     }
 
     // ===== SIGNUP =====
-    public boolean signup(String username, String password, String role) {
-        // Check if username exists
-        for (User u : users) {
-            if (u.getUsername().equals(username)) {
-                System.out.println("Username already exists!");
-                return false;
-            }
-        }
+    public boolean signup(String fullName, String email,String username, String password, String role) {
 
-        User newUser = new User(username, password, role);
-        users.add(newUser);
-        System.out.println("Account created: " + username);
+        if (fullName == null || email == null ||username == null || password == null) return false;
+
+        fullName = fullName.trim();
+        email = email.trim();
+        username = username.trim();
+        password = password.trim();
+
+        if (fullName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) return false;
+
+        if (userExists(username)) return false;
+
+        users.add(new User(fullName, email, username, password, role));
         return true;
     }
 
     // ===== LOGIN =====
     public boolean login(String username, String password) {
+
+        if (username == null || password == null) return false;
+
         for (User u : users) {
-            if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
-                isLoggedIn = true;
+            if (u.getUsername().equals(username)
+                    && u.getPassword().equals(password)) {
+
                 currentUser = u;
-                System.out.println("Welcome, " + username + "!");
                 return true;
             }
         }
-        System.out.println("Login failed!");
         return false;
     }
 
     // ===== LOGOUT =====
     public void logout() {
-        if (isLoggedIn) {
-            System.out.println("Goodbye, " + currentUser.getUsername());
-            isLoggedIn = false;
-            currentUser = null;
-        }
+        currentUser = null;
     }
 
-    // ===== RESET PASSWORD =====
-    public boolean resetPassword() {
-        if (!isLoggedIn) {
-            System.out.println("Please login first!");
-            return false;
-        }
 
-        System.out.print("Current password: ");
-        String currentPass = scan.nextLine();
+    // ===== USER CHANGES OWN ROLE (GUI) =====
+    public boolean changeCurrentUserRole(String newRole) {
 
-        if (!currentUser.getPassword().equals(currentPass)) {
-            System.out.println("Wrong password!");
-            return false;
-        }
+        if (currentUser == null) return false;
+        if (newRole == null || newRole.trim().isEmpty()) return false;
 
-        System.out.print("New password: ");
-        String newPass = scan.nextLine();
-        currentUser.setPassword(newPass);
-        System.out.println("Password updated!");
+        currentUser.setRole(newRole.trim());
         return true;
     }
 
-    // ===== UPDATE ACCOUNT =====
-    public boolean updateAccount(String newUsername, String newRole) {
-        if (!isLoggedIn) {
-            System.out.println("Please login first!");
-            return false;
-        }
+    // ===== ADMIN CHANGES OTHER USER ROLE =====
+    public boolean changeUserRole(String username, String newRole) {
 
-        String oldUsername = currentUser.getUsername();
+        if (currentUser == null) return false;
+        if (!currentUser.getRole().equalsIgnoreCase("admin")) return false;
 
-        // Update username if provided
-        if (newUsername != null && !newUsername.isEmpty()) {
-            for (User u : users) {
-                if (u.getUsername().equals(newUsername) && !newUsername.equals(oldUsername)) {
-                    System.out.println("Username '" + newUsername + "' is already taken!");
-                    return false;
-                }
+        for (User u : users) {
+            if (u.getUsername().equals(username)) {
+                u.setRole(newRole.trim());
+                return true;
             }
-            currentUser.setUsername(newUsername);
-            System.out.println("Username changed to: " + newUsername);
         }
-
-        // Update role if provided
-        if (newRole != null && !newRole.isEmpty()) {
-            currentUser.setRole(newRole);
-            System.out.println("Role changed to: " + newRole);
-        }
-
-        return true;
+        return false;
     }
 
-    // ===== HELPER METHODS =====
-    public boolean isLoggedIn() { return isLoggedIn; }
-    public User getCurrentUser() { return currentUser; }
-    public String getCurrentUsername() { return currentUser != null ? currentUser.getUsername() : ""; }
-    public String getCurrentRole() { return currentUser != null ? currentUser.getRole() : "none"; }
-
-    public void showAllUsers() {
-        System.out.println("\n=== All Users ===");
-        for (User user : users) {
-            System.out.println("- " + user.getUsername() + " (" + user.getRole() + ")");
+    // ===== HELPERS =====
+    private boolean userExists(String username) {
+        for (User u : users) {
+            if (u.getUsername().equals(username)) return true;
         }
+        return false;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public boolean isLoggedIn() {
+        return currentUser != null;
+    }
+
+    public LinkedList<User> getAllUsers() {
+        return users;
     }
 }
