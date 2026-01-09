@@ -1,124 +1,179 @@
 package model;
 
 import java.util.LinkedList;
-import java.time.LocalDateTime;
+import java.util.Queue;
 import services.CodeGenerator;
 
+/**
+ * Represents a session (class, lecture, or group activity).
+ * Handles enrollment, waitlisting, and session metadata.
+ */
 public class Session {
-    // Essential data members
+
+    // ===== DATA MEMBERS =====
     private int capacity;
-    private String code;
     private String host;
     private String subject;
-    private LinkedList<Student> students;
-    private LocalDateTime creationTime;
     private String location;
-    
-    // Optional: session timing
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private String description;
+    private String time;
 
-    // Constructor with required fields
-    public Session(int capacity, String host, String subject) {
+    private String joinCode; // null if public
+
+    private LinkedList<Student> students;
+    private Queue<Student> waitQueue;
+
+    // ===== CONSTRUCTOR =====
+    public Session(int capacity,String host,String subject,boolean isPrivate,String location,String description,String time) {
+
+        if (capacity <= 0)
+            throw new IllegalArgumentException("Capacity must be greater than 0");
+        if (host == null || host.trim().isEmpty())
+            throw new IllegalArgumentException("Host is required");
+        if (subject == null || subject.trim().isEmpty())
+            throw new IllegalArgumentException("Subject is required");
+
         this.capacity = capacity;
         this.host = host;
         this.subject = subject;
-        this.students = new LinkedList<>();
-        this.code = CodeGenerator.generateCode(6); // Auto-generated code
-        this.creationTime = LocalDateTime.now(); // Auto-set creation time
-    }
-
-    // Full constructor with optional fields
-    public Session(int capacity, String host, String subject, 
-                   LocalDateTime startTime, LocalDateTime endTime,
-                   String location) {
-        this.capacity = capacity;
-        this.host = host;
-        this.subject = subject;
-        this.students = new LinkedList<>();
-        this.code = CodeGenerator.generateCode(6);
-        this.creationTime = LocalDateTime.now();
-        this.startTime = startTime;
-        this.endTime = endTime;
         this.location = location;
+        this.description = description;
+        this.time = time;
+
+        this.students = new LinkedList<>();
+        this.waitQueue = new LinkedList<>();
+
+        this.joinCode = isPrivate ? CodeGenerator.generateCode(6) : null;
     }
 
-    // ========== BUSINESS LOGIC METHODS ==========
-    
-    /**
-     * Add a student to the session
-     * Returns false if session is at capacity or student already enrolled
-     */
-    public boolean addStudent(Student student) {
+    // ===== ENROLLMENT LOGIC =====
+    // ===== ENROLLMENT LOGIC =====
+    public boolean addStudent(User user) {
+        // Must be a Student
+        if (!(user instanceof Student)) {
+            System.out.println("Not a student, can't join");
+            return false;
+        }
+
+        Student student = (Student) user;
+
+        // Already enrolled or in waitlist
+        if (students.contains(student) || waitQueue.contains(student)) {
+            System.out.println(student.getName() + " is already in the session or waitlist");
+            return false;
+        }
+
+        // Session full → add to waitlist
         if (students.size() >= capacity) {
-            return false; // Session is full
+            waitQueue.add(student);
+            System.out.println(student.getName() + " added to waitlist");
+            return false;
         }
-        if (students.contains(student)) {
-            return false; // Student already enrolled
-        }
-        return students.add(student);
-    }
-    
-    /**
-     * Remove a student from the session
-     */
-    public boolean removeStudent(Student student) {
-        return students.remove(student);
-    }
-    
-    /**
-     * Check if student is enrolled in this session
-     */
-    public boolean hasStudent(Student student) {
-        return students.contains(student);
-    }
-    
-    /**
-     * Get current number of enrolled students
-     */
-    public int getEnrollmentCount() {
-        return students.size();
+
+        // Add student to session
+        students.add(student);
+        System.out.println(student.getName() + " successfully joined session");
+        return true;
     }
 
-    // ========== GETTERS ==========
-    public int getCapacity() { return capacity; }
-    public String getCode() { return code; }
-    public String getHost() { return host; }
-    public String getSubject() { return subject; }
-    public LinkedList<Student> getStudents() { return students; }
-    public LocalDateTime getCreationTime() { return creationTime; }
-    public String getLocation() { return location; }
-    public LocalDateTime getStartTime() { return startTime; }
-    public LocalDateTime getEndTime() { return endTime; }
-    
-    // Calculated getters for GUI
-    public int getAvailableSeats() {
-        return capacity - students.size();
+
+    public boolean removeStudent(Student student) {
+        if (student == null) return false;
+
+        boolean removed = students.remove(student);
+
+        if (removed && !waitQueue.isEmpty()) {
+            students.add(waitQueue.poll());
+        }
+
+        return removed || waitQueue.remove(student);
     }
-    
+
+    // ===== QUERY METHODS =====
     public boolean isFull() {
         return students.size() >= capacity;
     }
 
-    // ========== SETTERS ==========
-    public void setCapacity(int capacity) { 
-        // Prevent setting capacity lower than current enrollment
+    public int getCurrentJoined() {
+        return students.size();
+    }
+
+    public boolean isPrivate() {
+        return joinCode != null;
+    }
+
+    // ===== GETTERS =====
+    public int getCapacity() { return capacity; }
+    public String getHost() { return host; }
+    public String getSubject() { return subject; }
+    public String getLocation() { return location; }
+    public String getDescription() { return description; }
+    public String getTime() { return time; }
+    public String getJoinCode() { return joinCode; }
+
+    public LinkedList<Student> getStudents() {
+        return new LinkedList<>(students);
+    }
+
+    public LinkedList<Student> getWaitlist() {
+        return new LinkedList<>(waitQueue);
+    }
+
+    // ===== SETTERS =====
+    public void setCapacity(int capacity) {
         if (capacity >= students.size()) {
             this.capacity = capacity;
         }
     }
-    
+
     public void setHost(String host) { this.host = host; }
     public void setSubject(String subject) { this.subject = subject; }
     public void setLocation(String location) { this.location = location; }
-    public void setStartTime(LocalDateTime startTime) { this.startTime = startTime; }
-    public void setEndTime(LocalDateTime endTime) { this.endTime = endTime; }
-    
-    // Note: No setters for code and creationTime - these are immutable
-    
-    // Simple toString for debugging
+    public void setDescription(String description) { this.description = description; }
+    public void setTime(String time) { this.time = time; }
+
+    // ===== TO STRING =====
     @Override
-    public String toString() {
-        return code + " - " + subject + " (" + students.size() + "/" + capacity + ")";
+public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("===== SESSION DETAILS =====\n");
+        sb.append("Subject      : ").append(subject).append("\n");
+        sb.append("Host         : ").append(host).append("\n");
+        sb.append("Location     : ").append(location).append("\n");
+        sb.append("Time         : ").append(time).append("\n");
+        sb.append("Description  : ").append(description).append("\n");
+        sb.append("Capacity     : ").append(students.size())
+        .append("/").append(capacity).append("\n");
+        sb.append("Available    : ").append(getCurrentJoined()).append("\n");
+        sb.append("Type         : ").append(isPrivate() ? "Private" : "Public").append("\n");
+
+        if (isPrivate()) {
+            sb.append("Join Code    : ").append(joinCode).append("\n");
+        }
+
+        sb.append("Students     : ");
+        if (students.isEmpty()) {
+            sb.append("None\n");
+        } else {
+            sb.append("\n");
+            for (Student s : students) {
+                sb.append("  - ").append(s).append("\n");
+            }
+        }
+
+        sb.append("Waitlist     : ");
+        if (waitQueue.isEmpty()) {
+            sb.append("Empty\n");
+        } else {
+            sb.append("\n");
+            for (Student s : waitQueue) {
+                sb.append("  - ").append(s).append("\n");
+            }
+        }
+
+        sb.append("===========================\n");
+        return sb.toString();
     }
+
 }

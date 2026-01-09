@@ -3,72 +3,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "BackgroundAnimator",
+            "name": "App",
             "request": "launch",
-            "mainClass": "gui.BackgroundAnimator",
-            "projectName": "projectgui_9b2a50d",
-  "vmArgs": [
-                "--module-path",
-                "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
-                "--add-modules",
-                "javafx.controls,javafx.fxml",
-                "--enable-native-access=javafx.graphics"
-            ]
-        },
-        {
-            "type": "java",
-            "name": "Harris",
-            "request": "launch",
-            "mainClass": "gui.Harris",
-            "projectName": "projectgui_9b2a50d",
-            "vmArgs": [
-                "--module-path",
-                "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
-                "--add-modules",
-                "javafx.controls,javafx.fxml",
-                "--enable-native-access=javafx.graphics"
-            ]
-        },
-        {
-            "type": "java",
-            "name": "Main",
-            "request": "launch",
-            "mainClass": "gui.Main",
-            "projectName": "projectgui_9b2a50d",
-            "vmArgs": [
-                "--module-path",
-                "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
-                "--add-modules",
-                "javafx.controls,javafx.fxml",
-                "--enable-native-access=javafx.graphics"
-            ]
-        },
-        {
-            "type": "java",
-            "name": "Main2",
-            "request": "launch",
-            "mainClass": "Main2",
-            "projectName": "projectgui_9b2a50d",
-            "vmArgs": [
-                "--module-path",
-                "C:/Program Files/Java/javafx-sdk-25.0.1/lib",
-                "--add-modules",
-                "javafx.controls,javafx.fxml",
-                "--enable-native-access=javafx.graphics"
-            ]
-        },
-        {
-            "type": "java",
-            "name": "loginpage",
-            "request": "launch",
-            "mainClass": "loginpage",
-            "projectName": "projectgui_9b2a50d"
-        },
-        {
-            "type": "java",
-            "name": "Launch JavaFX App",
-            "request": "launch",
-            "mainClass": "Main",
+            "mainClass": "app.App",
+            "projectName": "UNIPLUS ENRICHMENT PROGRAM_9bf731a8",
             "vmArgs": [
                 "--module-path",
                 "C:/Program Files/Java/javafx-sdk-25.0.1/lib",

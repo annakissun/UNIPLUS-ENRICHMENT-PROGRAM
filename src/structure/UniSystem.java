@@ -1,8 +1,5 @@
 package structure;
-import model.*;
 import services.*;
-
-import java.util.LinkedList;
 
 public class UniSystem {
     //Data members
@@ -15,6 +12,7 @@ public class UniSystem {
         sessionManager = new SessionManager();
         studentManager = new StudentManager();
         authService = new AuthService();  // Initialize it
+
     }
 
     // Singleton method

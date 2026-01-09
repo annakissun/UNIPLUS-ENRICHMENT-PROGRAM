@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller.dashboardpage">
+   <children>
+      <Rectangle />
+      <VBox fx:id="emptyBox" alignment="CENTER" maxHeight="400.0" maxWidth="900.0" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #f5f5f5; -fx-padding: 40; -fx-background-radius: 20; -fx-alignment: center;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="349.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Registered Session">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="No registered classes yet" />
+         </children>
+      </VBox>
+      <VBox fx:id="SessContainer" prefHeight="200.0" prefWidth="100.0" spacing="15.0" />
+   </children>
+</StackPane>
