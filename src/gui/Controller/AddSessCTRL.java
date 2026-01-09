@@ -11,7 +11,6 @@ public class AddSessCTRL implements Navigable{
 
     //Data members
     private Navigator navigator;
-    private static boolean has;
     private UniSystem sys = UniSystem.getInstance();
 
     @FXML TextField subjectField;
@@ -31,10 +30,6 @@ public class AddSessCTRL implements Navigable{
 
         getInfo();
 
-        // 1️⃣ Set the flag first
-        has = true;
-        MakeSessCTRL.setHas(has);
-
         // 2️⃣ Then navigate
         if (navigator != null) {
             navigator.navigateTo("/gui/view/MakeSess.fxml");
@@ -49,10 +44,11 @@ public class AddSessCTRL implements Navigable{
         String desc = descriptionField.getText();
         String time = timeField.getText();
         int capacity = Integer.parseInt(capacityField.getText());
-        MakeSessCTRL.setCardInfo(subject,location,desc,time,capacity);
-        sys.getSessionManager().createSession(capacity, time, time, false, time);
+        sys.getSessionManager().createSession(capacity, "fahmi", subject, false, location,desc,time);
         sys.getSessionManager().printAllSess();
+        System.out.println("get info used!");
     }
+
 
     
 

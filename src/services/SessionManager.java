@@ -1,67 +1,63 @@
 package services;
 
 import model.*;
-
 import java.util.LinkedList;
 
 /**
- * Represents a session (class/lecture/group activity).
+ * Manages all sessions in the system.
  */
 public class SessionManager {
 
     // ===== DATA MEMBERS =====
-    private int capacity;
-    private String host;
-    private String subject;
-    private String location;
-    private String joinCode; // null if public
     private LinkedList<Session> sessions = new LinkedList<>();
-
-    public SessionManager(){}
+    private Session currentSession;
 
     // ===== CONSTRUCTOR =====
+    public SessionManager() {}
 
+    // ===== SESSION MANAGEMENT =====
 
-    // ===== BASIC GETTERS =====
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    
-
-    // ===== PRIVATE / PUBLIC =====
-    public boolean isPrivate() {
-        return joinCode != null;
-    }
-
-    public String getJoinCode() {
-        return joinCode;
-    }
-
-   
-
-    // ===== TO STRING =====
-    
-
-    public void createSession(int capacity, String host, String subject, boolean isPrivate, String location) {
-        Session session = new Session(capacity, host, subject, null, null, location, isPrivate);
+    public Session createSession(int capacity, String host, String subject, boolean isPrivate, String location, String desc, String time) {
+        Session session = new Session(capacity, host, subject, isPrivate, location, desc, time);
         sessions.add(session);
+        return session;
     }
 
-    public void printAllSess(){
+    public void removeSession(Session session) {
+        sessions.remove(session);
+
+        if (session == currentSession) {
+            currentSession = null;
+        }
+
+        System.out.println("Session removed");
+    }
+
+    // ===== CURRENT SESSION =====
+
+    /**
+     * Sets the currently active session (selected/joined).
+     */
+    public void setCurrentSession(Session session) {
+        this.currentSession = session;
+    }
+
+    /**
+     * Returns the currently active session.
+     * Returns null if no session is selected.
+     */
+    public Session getCurrentSession() {
+        return currentSession;
+    }
+
+    // ===== GETTERS =====
+
+    public LinkedList<Session> getSessions() {
+        return sessions;
+    }
+
+    // ===== DEBUG =====
+    public void printAllSess() {
         System.out.println(sessions);
     }
-
 }

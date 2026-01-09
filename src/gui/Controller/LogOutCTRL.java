@@ -22,7 +22,7 @@ public class LogOutCTRL implements Navigable{
     public void yes(){
         try {
             // Replace current root with login.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/Login.fxml"));
             Parent loginRoot = loader.load();
 
             Stage stage = (Stage) this.root.getScene().getWindow();

@@ -1,15 +1,30 @@
 package model;
 
+/**
+ * Base User class.
+ * Represents a system user such as Admin, Lecturer, or Student.
+ */
 public class User {
 
-    private String fullName;
-    private String email;
-    private String username;
-    private String password; // should be HASHED (handled in AuthService)
-    private String role;     // "admin", "lecturer", "student"
+    // ===== DATA MEMBERS =====
+    protected String fullName;
+    protected String email;
+    protected String username;
+    protected String password; // Should be HASHED (handled in AuthService)
+    protected String role;     // "admin", "lecturer", "student"
 
-    public User(String fullName, String email,
-                String username, String password, String role) {
+    // ===== CONSTRUCTORS =====
+
+    /**
+     * Protected no-argument constructor.
+     * Used by subclasses (e.g. Student).
+     */
+    protected User() {}
+
+    /**
+     * Full constructor for creating a User.
+     */
+    public User(String fullName, String email, String username,String password, String role) {
 
         this.fullName = fullName;
         this.email = email;
@@ -18,7 +33,8 @@ public class User {
         this.role = role;
     }
 
-    // ===== Getters =====
+    // ===== GETTERS =====
+
     public String getFullName() {
         return fullName;
     }
@@ -31,6 +47,7 @@ public class User {
         return username;
     }
 
+    // Password should already be hashed
     public String getPassword() {
         return password;
     }
@@ -39,7 +56,8 @@ public class User {
         return role;
     }
 
-    // ===== Setters =====
+    // ===== SETTERS =====
+
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
@@ -52,7 +70,7 @@ public class User {
         this.username = username;
     }
 
-    // password must already be hashed
+    // Password must already be hashed
     public void setPassword(String password) {
         this.password = password;
     }
@@ -61,7 +79,11 @@ public class User {
         this.role = role;
     }
 
-    // ===== Utility =====
+    // ===== UTILITY METHODS =====
+
+    /**
+     * Checks if the user has admin role.
+     */
     public boolean isAdmin() {
         return "admin".equalsIgnoreCase(role);
     }

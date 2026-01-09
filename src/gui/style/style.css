@@ -21,6 +21,15 @@
     -fx-padding: 5 10 5 10;
 }
 
+/* Join button */
+.session-card .join-button {
+    -fx-background-color: #1e9317;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-padding: 5 10 5 10;
+}
+
+
 /* Add New Session button */
 .add-button {
     -fx-background-color: linear-gradient(to right, #8DB9FF, #D3C2FF, #FFC1E8);

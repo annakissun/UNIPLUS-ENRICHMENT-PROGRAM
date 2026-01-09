@@ -7,17 +7,16 @@
 
 <StackPane stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller.MakeSessCTRL">
 
-    <VBox alignment="CENTER" spacing="20">
+                <!-- Main vertical container -->
+    <VBox alignment="CENTER" prefWidth="800" spacing="20">
 
-        <!-- EMPTY STATE CARD -->
+                             <!-- EMPTY STATE CARD -->
         <VBox fx:id="emptyCard" alignment="CENTER" maxWidth="600" spacing="20" style="-fx-background-color: #f5f5f5; -fx-padding: 40; -fx-background-radius: 20;">
             <Label text="Create New Session" />
             <Label fx:id="Label2" styleClass="empty-label" text="No session created" />
-            <Button fx:id="addButton" onAction="#handleAddNewSession" styleClass="add-button" text="+ Add New Session" />
+            <Button fx:id="addmoreBtn" onAction="#addMore" styleClass="add-button" text="+ Add New Session" />
         </VBox>
+          <VBox fx:id="sessionContainer" alignment="TOP_CENTER" spacing="15" style="-fx-padding: 10 20 10 20;" />
 
-              <!-- SESSION CARD CONTAINER -->
-        <VBox fx:id="sessionContainer" alignment="CENTER" spacing="15" />
-
-    </VBox>
+                </VBox>
 </StackPane>

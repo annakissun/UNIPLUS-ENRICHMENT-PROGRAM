@@ -8,6 +8,14 @@ public class StudentManager {
     //LL to store student data
     private LinkedList<Student> students = new LinkedList<>();
 
+// ===== CONSTRUCTOR =====
+public StudentManager() {
+        students.add(new Student("Muhammad Fahmi", "fahmi@gmail.com", "fahmi20", "pass123", "student", "Fahmi", 20, 202452103));
+        students.add(new Student("Ada",  "ada@gmail.com",   "ada20",   "12", "student", "Ada",   20, 202495928));
+        students.add(new Student("Nurul Aina",    "nurul@gmail.com", "nurul20", "pass123", "student", "Nurul", 20, 206942983));
+    }
+
+
     //Add a new student
     public void addStudent(Student s) {
         for (Student student : students) {
@@ -22,7 +30,7 @@ public class StudentManager {
     //Remove a student
     public void removeStudent(Student s) {
         for (Student student : students) {
-            if (student.getName().equals(s.getName())) {
+            if (student.getMatrixNum() == (s.getMatrixNum())) {
                 System.out.println("student already in system");  //later will filter by matrix number not name
                 break;  //exit loop then add the student if not
             }

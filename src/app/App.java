@@ -14,7 +14,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
          //stage = new Stage();
         stage.setTitle("Fahmi app");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/Login.fxml"));
         Rectangle2D r = Screen.getPrimary().getVisualBounds();
         Scene scene = new Scene(loader.load());
         stage.setWidth(r.getWidth() * 0.85);
@@ -25,7 +25,7 @@ public class App extends Application {
     }
     
     public static void main(String[] args) throws Exception {
-        UniSystem sys = UniSystem.getInstance();
+        UniSystem.getInstance();
         launch(args);
     }
 }

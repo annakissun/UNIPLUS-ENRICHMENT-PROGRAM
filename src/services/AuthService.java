@@ -1,10 +1,12 @@
 package services;
 
+import model.Student;
 import model.User;
 import java.util.LinkedList;
 
 public class AuthService {
 
+    //Data members
     private LinkedList<User> users = new LinkedList<>();
     private User currentUser;
 
@@ -15,6 +17,7 @@ public class AuthService {
         users.add(new User("Alice Student", "alice@uni.edu", "student1", "stud123", "student"));
         users.add(new User("Guest User", "guest@uni.edu", "guest1", "guest123", "guest"));
         users.add(new User("Muhammad Fahmi", "fahmi@gmail.com", "fahmi", "123", "student"));
+        nurul();
     }
 
     // ===== SIGNUP =====
@@ -35,15 +38,17 @@ public class AuthService {
         return true;
     }
 
+    public void nurul(){
+        users.add(new Student("ki bin boo", "email@gmail", "1", "1", "Student", "KKK", 20, 20144890));
+    }
+
     // ===== LOGIN =====
     public boolean login(String username, String password) {
 
         if (username == null || password == null) return false;
 
         for (User u : users) {
-            if (u.getUsername().equals(username)
-                    && u.getPassword().equals(password)) {
-
+            if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
                 currentUser = u;
                 return true;
             }
