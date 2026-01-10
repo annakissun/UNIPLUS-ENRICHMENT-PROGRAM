@@ -1,18 +1,37 @@
 package gui.Controller;
 
-import java.lang.reflect.Field;
-
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import model.Session;
+import structure.UniSystem;
+import util.AlertShow;
 
 public class PrivateSessCTRL {
 
-    @FXML Field privateSessionField;
-    @FXML Button joinBtn;
+    @FXML private TextField privateSessField;
+    private final UniSystem sys = UniSystem.getInstance();
 
+    @FXML
+    public void JoinSess() {
 
-    public void joinBtn(){
-        System.out.println("joinBtn clicked!");
+        String code = privateSessField.getText().trim();
+        if (code.isEmpty()) {
+            AlertShow.showError("Invalid Code", "Please enter a join code");
+            return;
+        }
+        for (Session s : sys.getSessionManager().getSessions()) {
+            if (s.getJoinCode() == null) continue;  // ✅ skip public sessions safely
+            // ✅ code matched
+            if (s.getJoinCode().equalsIgnoreCase(code)) {
+                boolean success = s.addStudent(sys.getAuthService().getCurrentUser());
+                if (success) {
+                    AlertShow.showInfo("Joined Session", "You joined the private session successfully!");
+                } else {
+                    AlertShow.showError("Join Failed", "You may already be in the session or it is full");
+                }
+                return; // ✅ stop searching
+            }
+        }
+        AlertShow.showError("Invalid Code", "No session found with this join code");  // ❌ no matching code found
     }
-    public void JoinSess(){System.out.println("#JoinSess");}
 }

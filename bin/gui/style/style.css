@@ -43,4 +43,21 @@
 .empty-label {
     -fx-font-size: 18px;
     -fx-text-fill: #888;
+
+}
+
+/* Sidebar button */
+.sidebar-button {
+    -fx-background-color: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-text-fill: #333;
+}
+
+/* Sidebar button hover */
+.sidebar-button:hover {
+    -fx-background-color: linear-gradient(to right, #8DB9FF, #D3C2FF, #FFC1E8);
+    -fx-text-fill: white;
+    -fx-cursor: hand;
 }

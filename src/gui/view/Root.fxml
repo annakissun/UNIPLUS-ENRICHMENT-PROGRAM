@@ -10,7 +10,7 @@
       <Rectangle fx:id="bgRect" fill="#03e7c5" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
       <StackPane fx:id="contentHolder" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;" />
       <StackPane fx:id="sidebarHolder" alignment="CENTER_LEFT" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" StackPane.alignment="CENTER_LEFT" />
-      <Button fx:id="toggleBtn" mnemonicParsing="false" style="-fx-background-color: cyan;" text="☰" StackPane.alignment="TOP_LEFT">
+      <Button fx:id="toggleBtn" mnemonicParsing="false" style="-fx-background-color: white;" text="☰" StackPane.alignment="TOP_LEFT">
          <StackPane.margin>
             <Insets left="15.0" top="15.0" />
          </StackPane.margin></Button>

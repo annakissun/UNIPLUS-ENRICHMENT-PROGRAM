@@ -1,35 +1,60 @@
 package gui.Controller;
 
+import java.util.LinkedList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import model.Session;
 import structure.UniSystem;
 import util.SessionCardRenderer;
 
 public class JoinSessCTRL {
 
-    @FXML
-    private VBox sessContainer; // 🚫 NO new VBox()
+    @FXML private VBox sessContainer;
     @FXML private VBox emptyBox;
 
     private final UniSystem sys = UniSystem.getInstance();
+    private final LinkedList<Session> publicSess = new LinkedList<>();
 
     @FXML
     public void initialize() {
         refreshSessions();
     }
 
-    @FXML public void refreshSessions() {
-    boolean empty = sys.getSessionManager().getSessions().isEmpty();
+    @FXML
+    public void refreshSessions() {
 
-    emptyBox.setVisible(empty);
-    emptyBox.setManaged(empty);
+        publicSess.clear(); // ✅ IMPORTANT
 
-    sessContainer.setVisible(!empty);
-    sessContainer.setManaged(!empty);
+        // 1️⃣ Collect ONLY public sessions
+        for (Session s : sys.getSessionManager().getSessions()) {
+            if (s.getJoinCode() == null) {
+                publicSess.add(s);
+            }
+        }
 
-    if (!empty) {
-        SessionCardRenderer.renderSessions(sessContainer, sys.getSessionManager().getSessions(), false, true, sys);// ✅ editable (delete button shown)
+        // 2️⃣ If NO public sessions → show empty card
+        if (publicSess.isEmpty()) {
+            showEmpty();
+            sessContainer.getChildren().clear();
+            return;
+        }
+
+        // 3️⃣ Otherwise → show sessions
+        hideEmpty();
+        SessionCardRenderer.renderSessions(sessContainer,publicSess,false,true,  false, sys);
     }
-}
 
+    private void showEmpty() {
+        emptyBox.setVisible(true);
+        emptyBox.setManaged(true);
+        sessContainer.setVisible(false);
+        sessContainer.setManaged(false);
+    }
+
+    private void hideEmpty() {
+        emptyBox.setVisible(false);
+        emptyBox.setManaged(false);
+        sessContainer.setVisible(true);
+        sessContainer.setManaged(true);
+    }
 }

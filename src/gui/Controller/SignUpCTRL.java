@@ -10,7 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class signuppage {
+public class SignUpCTRL {
 
     @FXML private StackPane root;
     @FXML private TextField usernameField;
@@ -34,12 +34,12 @@ public class signuppage {
     }
 
     @FXML
-    private void handleSignup() {
+    private void signUp() {
         try {
             // add actual signup logic here (validation, saving user, etc.)
 
             // Load the main application layout (Root.fxml)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/Root.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/Login.fxml"));
             Parent root = loader.load();
 
             // Get current Stage
@@ -56,8 +56,7 @@ public class signuppage {
     @FXML
     private void goToLogin() {
         try {
-            // Replace current root with login.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/Login.fxml"));
             Parent loginRoot = loader.load();
 
             Stage stage = (Stage) this.root.getScene().getWindow();
