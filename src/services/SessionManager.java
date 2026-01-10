@@ -45,4 +45,8 @@ public class SessionManager {
     public void printAllSess() {
         System.out.println(sessions);
     }
+
+    public void addSession(Session s) {
+        sessions.add(s);
+    }
 }

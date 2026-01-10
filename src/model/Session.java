@@ -21,8 +21,8 @@ public class Session {
 
     private String joinCode; // null if public
 
-    private LinkedList<Student> students;
-    private Queue<Student> waitQueue;
+    private LinkedList<Student> students = new LinkedList<>();
+    private Queue<Student> waitQueue = new LinkedList<>();
 
     // ===== CONSTRUCTOR =====
     public Session(int capacity,String host,String subject,boolean isPrivate,String location,String description,String time) {
@@ -40,14 +40,9 @@ public class Session {
         this.location = location;
         this.description = description;
         this.time = time;
-
-        this.students = new LinkedList<>();
-        this.waitQueue = new LinkedList<>();
-
         this.joinCode = isPrivate ? CodeGenerator.generateCode(6) : null;
     }
 
-    // ===== ENROLLMENT LOGIC =====
     // ===== ENROLLMENT LOGIC =====
     public boolean addStudent(User user) {
         // Must be a Student
@@ -142,6 +137,11 @@ public class Session {
     public void setDescription(String description) { this.description = description; }
     public void setTime(String time) { this.time = time; }
 
+    public boolean hasJoined(Student s) {
+        return students.contains(s);
+    }
+
+
     // ===== TO STRING =====
     @Override
 public String toString() {
@@ -183,6 +183,32 @@ public String toString() {
         }
 
         sb.append("===========================\n");
+        return sb.toString();
+    }
+
+    // inside Session.java
+    public String getStudentNames() {
+        if (students.isEmpty()) return "None";
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < students.size(); i++) {
+            sb.append(students.get(i).getName());
+            if (i < students.size() - 1) sb.append(", "); // add comma between names
+        }
+        return sb.toString();
+    }
+
+    // Get all waitlisted student names
+    public String getWaitlistNames() {
+        if (waitQueue.isEmpty()) return "None";
+
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        for (Student s : waitQueue) {
+            sb.append(s.getName());
+            i++;
+            if (i < waitQueue.size()) sb.append(", ");
+        }
         return sb.toString();
     }
 

@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import structure.UniSystem;
 
 public class SignUpCTRL {
 
@@ -16,11 +17,14 @@ public class SignUpCTRL {
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private PasswordField confirmField;
+    @FXML private TextField fullNameField;
+    @FXML private TextField emailField;
     @FXML private Button signupButton;
     @FXML private Hyperlink loginLink;
     @FXML private Rectangle bgRect;
 
     private AnimatedBackground ab;
+    private static UniSystem sys = UniSystem.getInstance();
 
     @FXML
     private void initialize() {
@@ -36,17 +40,32 @@ public class SignUpCTRL {
     @FXML
     private void signUp() {
         try {
-            // add actual signup logic here (validation, saving user, etc.)
 
-            // Load the main application layout (Root.fxml)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/Login.fxml"));
-            Parent root = loader.load();
+            String fullName = fullNameField.getText().trim();
+            String userName = usernameField.getText().trim();
+            String email = emailField.getText().trim();
+            String password = passwordField.getText().trim();
+            String role = "Student";
+            boolean success = sys.getAuthService().signup(fullName, email, userName, password, role);
 
-            // Get current Stage
-            Stage stage = (Stage) this.root.getScene().getWindow();
+            if (success) {
 
-            // Replace the Scene root with the main app root
-            stage.getScene().setRoot(root);
+                AlertShow.showInfo("Sign Up Successfull! ", "Your Account have been created!");
+                // add actual signup logic here (validation, saving user, etc.)
+
+                // Load the main application layout (Root.fxml)
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/Login.fxml"));
+                Parent root = loader.load();
+
+                // Get current Stage
+                Stage stage = (Stage) this.root.getScene().getWindow();
+
+                // Replace the Scene root with the main app root
+                stage.getScene().setRoot(root);
+            } else {
+                AlertShow.showError("Can't Sign", "Please complete all the required data");
+            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
