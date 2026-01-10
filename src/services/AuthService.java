@@ -40,6 +40,7 @@ public class AuthService {
 
     public void nurul(){
         users.add(new Student("ki bin boo", "email@gmail", "1", "1", "Student", "KKK", 20, 20144890));
+        users.add(new Student("Iman", "imangmail", "iman", "1", "Student", "iman op", 20, 608016510));
     }
 
     // ===== LOGIN =====

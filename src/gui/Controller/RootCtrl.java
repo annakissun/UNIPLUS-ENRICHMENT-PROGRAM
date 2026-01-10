@@ -24,7 +24,7 @@ public class RootCtrl implements Navigator {
     @FXML //method to initialize
     public void initialize() {
 
-        loadContent("/gui/view/Content.fxml");
+        loadContent("/gui/view/Dashboard.fxml");
         loadSidebar();
         ab = new AnimatedBackground();
         ab.attach(bgRect);
@@ -58,7 +58,7 @@ public class RootCtrl implements Navigator {
     //method to load sidebar
     private void loadSidebar() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/NewBar.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/SideBar.fxml"));
             Parent sidebar = loader.load();
 
             Object ctrl = loader.getController();

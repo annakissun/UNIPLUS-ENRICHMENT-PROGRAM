@@ -1,7 +1,6 @@
 package gui.Controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import structure.UniSystem;
 import util.Navigable;
@@ -12,7 +11,6 @@ public class MakeSessCTRL implements Navigable {
 
     @FXML private VBox emptyCard;
     @FXML private VBox sessionContainer;
-    @FXML private Button addmoreBtn;
 
     private Navigator navigator;
     private final UniSystem system = UniSystem.getInstance();
@@ -25,13 +23,11 @@ public class MakeSessCTRL implements Navigable {
         loadSessions();
     }
     @FXML
-    private void handleAddNewSession() {
+    private void AddNewSess() {
         if (navigator != null) {
             navigator.navigateTo("/gui/view/AddSess.fxml");
         }
     }
-
-    public void addMore(){handleAddNewSession();}
 
     @Override
     public void setNavigator(Navigator navigator) {
@@ -50,8 +46,8 @@ public class MakeSessCTRL implements Navigable {
         }
 
         hideEmpty();
-
-        SessionCardRenderer.renderSessions(sessionContainer, system.getSessionManager().getSessions(), true, false, system);// ✅ editable (delete button shown)
+        
+        SessionCardRenderer.renderSessions(sessionContainer, system.getSessionManager().getSessions(), true, false,false, system);// ✅ editable (delete button shown)
         
     }
 
@@ -64,4 +60,5 @@ public class MakeSessCTRL implements Navigable {
         emptyCard.setVisible(false);
         emptyCard.setManaged(false);
     }
+
 }

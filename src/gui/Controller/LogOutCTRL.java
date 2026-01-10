@@ -9,10 +9,8 @@ import util.Navigable;
 import util.Navigator;
 
 public class LogOutCTRL implements Navigable{
-    //@FXML Button noBtn;
-    //@FXML Button yesBtn;
-    @FXML private StackPane root;
 
+    @FXML private StackPane root;
     private Navigator navigator;
     //setter
     public void setNavigator(Navigator navigator) {
@@ -21,10 +19,8 @@ public class LogOutCTRL implements Navigable{
 
     public void yes(){
         try {
-            // Replace current root with login.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/Login.fxml"));
             Parent loginRoot = loader.load();
-
             Stage stage = (Stage) this.root.getScene().getWindow();
             stage.getScene().setRoot(loginRoot);
 
@@ -33,7 +29,7 @@ public class LogOutCTRL implements Navigable{
         }
     }
     public void no() {
-        if (navigator != null) navigator.navigateTo("/gui/view/dashboard.fxml");
+        if (navigator != null) navigator.navigateTo("/gui/view/DashBoard.fxml");
         else {System.out.println("navigator is null");}
     }
 }

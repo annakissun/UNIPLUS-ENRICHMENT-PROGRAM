@@ -3,6 +3,7 @@ package model;
 import java.util.LinkedList;
 import java.util.Queue;
 import services.CodeGenerator;
+import util.AlertShow;
 
 /**
  * Represents a session (class, lecture, or group activity).
@@ -60,12 +61,14 @@ public class Session {
         // Already enrolled or in waitlist
         if (students.contains(student) || waitQueue.contains(student)) {
             System.out.println(student.getName() + " is already in the session or waitlist");
+            AlertShow.showInfo("Can't Join Session", "You're already in the session or waitlist queue");
             return false;
         }
 
         // Session full → add to waitlist
         if (students.size() >= capacity) {
             waitQueue.add(student);
+            AlertShow.showInfo("Added to waiting queue", "The session is full for now please wait someone to leave");
             System.out.println(student.getName() + " added to waitlist");
             return false;
         }
@@ -77,17 +80,24 @@ public class Session {
     }
 
 
-    public boolean removeStudent(Student student) {
-        if (student == null) return false;
-
+    public boolean removeStudent(User user) {
+        // Must be a Student
+        if (!(user instanceof Student)) {
+            System.out.println("Not a student, can't be removed");
+            return false;
+        }
+        Student student = (Student) user;
+        // Try to remove from enrolled students
         boolean removed = students.remove(student);
-
+        // If removed and waitlist not empty, move first waitlisted student to session
         if (removed && !waitQueue.isEmpty()) {
             students.add(waitQueue.poll());
         }
-
-        return removed || waitQueue.remove(student);
+        // Also try removing from waitlist (in case they were only in waitlist)
+        boolean removedFromWaitlist = waitQueue.remove(student);
+        return removed || removedFromWaitlist;
     }
+
 
     // ===== QUERY METHODS =====
     public boolean isFull() {
