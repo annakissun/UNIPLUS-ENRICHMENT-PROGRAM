@@ -144,47 +144,47 @@ public class Session {
 
     // ===== TO STRING =====
     @Override
-public String toString() {
-        StringBuilder sb = new StringBuilder();
+    public String toString() {
+            StringBuilder sb = new StringBuilder();
 
-        sb.append("===== SESSION DETAILS =====\n");
-        sb.append("Subject      : ").append(subject).append("\n");
-        sb.append("Host         : ").append(host).append("\n");
-        sb.append("Location     : ").append(location).append("\n");
-        sb.append("Time         : ").append(time).append("\n");
-        sb.append("Description  : ").append(description).append("\n");
-        sb.append("Capacity     : ").append(students.size())
-        .append("/").append(capacity).append("\n");
-        sb.append("Available    : ").append(getCurrentJoined()).append("\n");
-        sb.append("Type         : ").append(isPrivate() ? "Private" : "Public").append("\n");
+            sb.append("===== SESSION DETAILS =====\n");
+            sb.append("Subject      : ").append(subject).append("\n");
+            sb.append("Host         : ").append(host).append("\n");
+            sb.append("Location     : ").append(location).append("\n");
+            sb.append("Time         : ").append(time).append("\n");
+            sb.append("Description  : ").append(description).append("\n");
+            sb.append("Capacity     : ").append(students.size())
+            .append("/").append(capacity).append("\n");
+            sb.append("Available    : ").append(getCurrentJoined()).append("\n");
+            sb.append("Type         : ").append(isPrivate() ? "Private" : "Public").append("\n");
 
-        if (isPrivate()) {
-            sb.append("Join Code    : ").append(joinCode).append("\n");
-        }
-
-        sb.append("Students     : ");
-        if (students.isEmpty()) {
-            sb.append("None\n");
-        } else {
-            sb.append("\n");
-            for (Student s : students) {
-                sb.append("  - ").append(s).append("\n");
+            if (isPrivate()) {
+                sb.append("Join Code    : ").append(joinCode).append("\n");
             }
-        }
 
-        sb.append("Waitlist     : ");
-        if (waitQueue.isEmpty()) {
-            sb.append("Empty\n");
-        } else {
-            sb.append("\n");
-            for (Student s : waitQueue) {
-                sb.append("  - ").append(s).append("\n");
+            sb.append("Students     : ");
+            if (students.isEmpty()) {
+                sb.append("None\n");
+            } else {
+                sb.append("\n");
+                for (Student s : students) {
+                    sb.append("  - ").append(s).append("\n");
+                }
             }
-        }
 
-        sb.append("===========================\n");
-        return sb.toString();
-    }
+            sb.append("Waitlist     : ");
+            if (waitQueue.isEmpty()) {
+                sb.append("Empty\n");
+            } else {
+                sb.append("\n");
+                for (Student s : waitQueue) {
+                    sb.append("  - ").append(s).append("\n");
+                }
+            }
+
+            sb.append("===========================\n");
+            return sb.toString();
+        }
 
     // inside Session.java
     public String getStudentNames() {
