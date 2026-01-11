@@ -1,1 +1,21 @@
-12|ki bin boo|MAAT|false|FB2|TEST|11:20|20144890,608016510
+12|Iman Omar|ICT200|false|LT5|Bring test pad|12.00|david,fahmi|
+1|Muhammad Fahmi|Math101|false|Room A1|Intro to Algebra|08:00|alice,bob|charlie,david
+2|Khalid bin Amin|Physics102|true|Lab B2|Mechanics experiment|09:00|ethan,farah|grace,hadi
+3|Iman Omar|ICT200|false|LT5|Bring test pad|12:00|david,fahmi|alice,charlie
+4|Alice Tan|Chem101|true|Lab C1|Chemical reactions demo|10:00|bob,grace|david,ethan
+5|Bob Lee|Bio201|false|Room A3|Human anatomy|11:00|charlie,farah|alice,hadi
+6|Charlie Lim|Math102|false|Room B1|Calculus practice|08:30|david,iman|bob,kelly
+7|David Ng|ICT201|true|Lab B3|Networking basics|09:30|alice,kelly|fahmi,jason
+8|Ethan Chong|Physics201|false|Room C2|Optics lab|13:00|hadi,lina|farah,iman
+9|Farah Ali|Chem102|true|Lab A2|Acid-base titration|10:30|grace,alice|bob,charlie
+10|Grace Wong|Bio202|false|Room B4|Plant biology|11:30|ethan,iman|david,kelly
+11|Hadi Hassan|Math201|true|Room C3|Statistics intro|12:30|fahmi,farah|grace,jason
+12|Irene Lim|ICT202|false|Lab D1|Programming basics|14:00|lina,jason|alice,hadi
+13|Jason Tan|Physics203|true|Lab C4|Thermodynamics|15:00|bob,iman|farah,grace
+14|Kelly Ng|Math203|false|Room D2|Probability|08:15|charlie,david|alice,ethan
+15|Lina Omar|Chem201|true|Lab B5|Organic synthesis|09:45|fahmi,grace|bob,iman
+16|Muhammad Fahmi|ICT203|false|Room A5|Database intro|10:15|alice,jason|lina,farah
+17|Khalid bin Amin|Bio203|true|Room C5|Genetics|11:45|david,ethan|hadi,kelly
+18|Iman Omar|Math204|false|Room D3|Linear Algebra|12:45|bob,charlie|fahmi,alice
+19|Alice Tan|Physics204|true|Lab D4|Electric circuits|13:30|grace,lina|ethan,david
+20|Bob Lee|ICT204|false|Lab A3|Networking advanced|14:30|jason,iman|farah,hadi
