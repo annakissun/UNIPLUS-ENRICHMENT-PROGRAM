@@ -23,25 +23,47 @@ public final class SessionCardRenderer {
         Label location = new Label("Location: " + s.getLocation());
         Label time = new Label("Time: " + s.getTime());
         Label capacity = new Label("Capacity: " + s.getCapacity());
-        Label joined = new Label("Currently Joined : " + s.getCurrentJoined());
+        Label joined = new Label("Currently Joined : " + s.getCurrentJoined() + " " + s.getStudentNames());
+        Label inQueue = new Label("Waitlist: " + s.getWaitlistNames());
         Label desc = new Label("Description : " + s.getDescription());
         Label code = new Label("Session Code : " + s.getJoinCode());
-        card.getChildren().addAll(title, host, location, time, capacity,code, joined, desc);
+        card.getChildren().addAll(title, host, location, time, capacity,inQueue, code, joined, desc);
 
-        if (editable) { Button delete = new Button("Delete"); delete.getStyleClass().add("delete-button"); 
-        delete.setOnAction(e -> { container.getChildren().remove(card); sys.getSessionManager().removeSession(s); 
-        AlertShow.showInfo("Session is removed", "The session is deleted from the system"); }); card.getChildren().add(delete); }
+        if (editable) { 
+            Button delete = new Button("Delete"); delete.getStyleClass().add("delete-button"); 
+            delete.setOnAction(e -> { 
+                container.getChildren().remove(card); 
+                sys.getSessionManager().removeSession(s);
+                AlertShow.showInfo("Session is removed", "The session is deleted from the system"); 
+            }); 
+            card.getChildren().add(delete); 
+        }
 
-        if (joinable) { Button join = new Button("Join"); join.getStyleClass().add("join-button"); 
-        join.setOnAction(e -> { boolean success = s.addStudent(sys.getAuthService().getCurrentUser());
-        if (!success) { AlertShow.showError("Couldnt Join session", "Please try again"); } 
-        else { AlertShow.showInfo("Session joined", "You successfully joined the session!"); } }); card.getChildren().add(join); }
+        if (joinable) { 
+            Button join = new Button("Join"); join.getStyleClass().add("join-button"); 
+            join.setOnAction(e -> { 
+                boolean success = s.addStudent(sys.getAuthService().getCurrentUser());
+                if (!success) { 
+                    AlertShow.showError("Couldnt Join session", "Please try again"); 
+                } else { 
+                    AlertShow.showInfo("Session joined", "You successfully joined the session!"); 
+                } 
+            }); 
+            card.getChildren().add(join); 
+        }
 
-        if (cancelable) { Button cancel = new Button("Cancel Join"); 
-        cancel.getStyleClass().add("delete-button"); 
-        cancel.setOnAction(e -> { boolean success = s.removeStudent(sys.getAuthService().getCurrentUser());
-        if (!success) { AlertShow.showError("Couldnt left session", "Please try again"); } 
-        else { AlertShow.showInfo("Session Cancelled", "You successfully left the session!"); } }); card.getChildren().add(cancel); }
+        if (cancelable) { 
+            Button cancel = new Button("Cancel Join"); cancel.getStyleClass().add("delete-button"); 
+            cancel.setOnAction(e -> { 
+                boolean success = s.removeStudent(sys.getAuthService().getCurrentUser());
+                if (!success) { 
+                    AlertShow.showError("Couldnt left session", "Please try again"); 
+                } else { 
+                    AlertShow.showInfo("Session Cancelled", "You successfully left the session!"); 
+                } 
+            }); 
+            card.getChildren().add(cancel); 
+        }
 
         return card;
     }

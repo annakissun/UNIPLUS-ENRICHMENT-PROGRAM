@@ -16,14 +16,14 @@ public class AuthService {
         users.add(new User("Dr John Lecturer", "john@uni.edu", "lecturer1", "lect123", "lecturer"));
         users.add(new User("Alice Student", "alice@uni.edu", "student1", "stud123", "student"));
         users.add(new User("Guest User", "guest@uni.edu", "guest1", "guest123", "guest"));
-        users.add(new User("Muhammad Fahmi", "fahmi@gmail.com", "fahmi", "123", "student"));
+        users.add(new Student("Muhammad Fahmi", "fahmi@gmail.com", "fahmi", "123", "student","fahmi",20,202441064));
         nurul();
     }
 
     // ===== SIGNUP =====
-    public boolean signup(String fullName, String email,String username, String password, String role) {
+    public boolean signup(String fullName, String email, String username, String password, String role) {
 
-        if (fullName == null || email == null ||username == null || password == null) return false;
+        if (fullName == null || email == null || username == null || password == null) return false;
 
         fullName = fullName.trim();
         email = email.trim();
@@ -31,12 +31,17 @@ public class AuthService {
         password = password.trim();
 
         if (fullName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) return false;
-
         if (userExists(username)) return false;
 
-        users.add(new User(fullName, email, username, password, role));
+        if (role.equals("Student")) {
+            users.add(new Student(fullName, email, username, password, role, username, 0, 0));
+        } else {
+            users.add(new User(fullName, email, username, password, role));
+        }
+
         return true;
     }
+
 
     public void nurul(){
         users.add(new Student("ki bin boo", "email@gmail", "1", "1", "Student", "KKK", 20, 20144890));

@@ -67,4 +67,8 @@ public class Student extends User {
                "\nAge           : " + age +
                "\nMatrix Number : " + matrixNum;
     }
+
+    public boolean isProfileComplete() {
+    return age != 0 && matrixNum != 0;}
+
 }

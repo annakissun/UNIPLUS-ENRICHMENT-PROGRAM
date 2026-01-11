@@ -2,11 +2,13 @@ package gui.Controller;
 
 import java.util.LinkedList;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
-//import model.Session;
+import model.Student;
 import javafx.scene.layout.StackPane;
 import structure.UniSystem;
+import util.AlertShow;
 import util.SessionCardRenderer;
 
 public class DashBoardCTRL {
@@ -17,9 +19,17 @@ public class DashBoardCTRL {
 
     private final UniSystem sys = UniSystem.getInstance();
 
+    public void verifyStud() {
+        if (sys.getAuthService().getCurrentUser() instanceof Student s && !s.isProfileComplete()) {
+        Platform.runLater(() -> AlertShow.showInfo("Profile Incomplete","Please complete your profile."));
+    }
+
+    }
+
     @FXML
     public void initialize() {
         loadJoinedSessions();
+        verifyStud();
     }
 
     private void loadJoinedSessions() {

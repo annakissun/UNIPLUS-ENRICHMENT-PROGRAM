@@ -7,21 +7,24 @@ import util.Navigable;
 import util.Navigator;
 import util.SessionCardRenderer;
 
+
 public class MakeSessCTRL implements Navigable {
 
     @FXML private VBox emptyCard;
     @FXML private VBox sessionContainer;
 
     private Navigator navigator;
-    private final UniSystem system = UniSystem.getInstance();
+    private final UniSystem sys = UniSystem.getInstance();
 
     @FXML
     private void initialize() {
         loadSessions();
     }
+
     public void refresh(){
         loadSessions();
     }
+
     @FXML
     private void AddNewSess() {
         if (navigator != null) {
@@ -34,21 +37,16 @@ public class MakeSessCTRL implements Navigable {
         this.navigator = navigator;
     }
 
-    /* ===============================
-       CORE LOGIC
-       =============================== */
 
     private void loadSessions() {
-        if (system.getSessionManager().getSessions().isEmpty()) {
+        if (sys.getSessionManager().getSessions().isEmpty()) {
             showEmpty();
             sessionContainer.getChildren().clear();
             return;
         }
 
         hideEmpty();
-        
-        SessionCardRenderer.renderSessions(sessionContainer, system.getSessionManager().getSessions(), true, false,false, system);// ✅ editable (delete button shown)
-        
+        SessionCardRenderer.renderSessions(sessionContainer, sys.getSessionManager().getSessions(), true, false,false, sys);// ✅ editable (delete button shown)
     }
 
     private void showEmpty() {
