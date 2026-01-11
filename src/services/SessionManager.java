@@ -15,6 +15,7 @@ public class SessionManager {
     // ===== SESSION MANAGEMENT =====
     public Session createSession(int capacity, String host, String subject, boolean isPrivate, String location, String desc, String time) {
         Session session = new Session(capacity, host, subject, isPrivate, location, desc, time);
+        sessions.add(new Session(10, "Ada", "ITT270", false, "BK12", "Dont be late", "11:10"));
         sessions.add(session);
         return session;
     }

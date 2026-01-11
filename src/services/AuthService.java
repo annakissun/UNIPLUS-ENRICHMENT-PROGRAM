@@ -17,7 +17,8 @@ public class AuthService {
         users.add(new User("Alice Student", "alice@uni.edu", "student1", "stud123", "student"));
         users.add(new User("Guest User", "guest@uni.edu", "guest1", "guest123", "guest"));
         users.add(new Student("Muhammad Fahmi", "fahmi@gmail.com", "fahmi", "123", "student","fahmi",20,202441064));
-        nurul();
+        users.add(new Student("khalid bin amin", "khalid@gmail", "1", "1", "Student", "khalid", 20, 20144890));
+        users.add(new Student("Iman", "imangmail", "iman", "1", "Student", "iman op", 20, 608016510));
     }
 
     // ===== SIGNUP =====
@@ -42,12 +43,6 @@ public class AuthService {
         return true;
     }
 
-
-    public void nurul(){
-        users.add(new Student("ki bin boo", "email@gmail", "1", "1", "Student", "KKK", 20, 20144890));
-        users.add(new Student("Iman", "imangmail", "iman", "1", "Student", "iman op", 20, 608016510));
-    }
-
     // ===== LOGIN =====
     public boolean login(String username, String password) {
 
@@ -65,32 +60,6 @@ public class AuthService {
     // ===== LOGOUT =====
     public void logout() {
         currentUser = null;
-    }
-
-
-    // ===== USER CHANGES OWN ROLE (GUI) =====
-    public boolean changeCurrentUserRole(String newRole) {
-
-        if (currentUser == null) return false;
-        if (newRole == null || newRole.trim().isEmpty()) return false;
-
-        currentUser.setRole(newRole.trim());
-        return true;
-    }
-
-    // ===== ADMIN CHANGES OTHER USER ROLE =====
-    public boolean changeUserRole(String username, String newRole) {
-
-        if (currentUser == null) return false;
-        if (!currentUser.getRole().equalsIgnoreCase("admin")) return false;
-
-        for (User u : users) {
-            if (u.getUsername().equals(username)) {
-                u.setRole(newRole.trim());
-                return true;
-            }
-        }
-        return false;
     }
 
     // ===== HELPERS =====
