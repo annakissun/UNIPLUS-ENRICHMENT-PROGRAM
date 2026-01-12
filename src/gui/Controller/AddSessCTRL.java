@@ -47,5 +47,4 @@ public class AddSessCTRL implements Navigable{
         sys.getSessionManager().createSession(capacity, sys.getAuthService().getCurrentUser().getFullName(), subject, isPrivate, location,desc,time);
     }
 
-
 }

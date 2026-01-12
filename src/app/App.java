@@ -13,7 +13,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
          //stage = new Stage();
-        stage.setTitle("Fahmi app");
+        stage.setTitle("UNIPLUS ENRICHMENT PROGRAM");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/Login.fxml"));
         Rectangle2D r = Screen.getPrimary().getVisualBounds();
         Scene scene = new Scene(loader.load());

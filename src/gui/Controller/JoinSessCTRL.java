@@ -22,12 +22,11 @@ public class JoinSessCTRL {
 
     @FXML
     public void refreshSessions() {
-
         publicSess.clear(); // ✅ IMPORTANT
 
         // 1️⃣ Collect ONLY public sessions
-        for (Session s : sys.getSessionManager().getSessions()) {
-            if (s.getJoinCode() == null) {
+        for (Session s : sys.getSessionManager().getAllSessions()) {
+            if (!s.isPrivate()) {  // <-- use isPrivate flag
                 publicSess.add(s);
             }
         }
@@ -41,8 +40,9 @@ public class JoinSessCTRL {
 
         // 3️⃣ Otherwise → show sessions
         hideEmpty();
-        SessionCardRenderer.renderSessions(sessContainer,publicSess,false,true,  false, sys);
+        SessionCardRenderer.renderSessions(sessContainer, publicSess, false, true, false, sys);
     }
+
 
     private void showEmpty() {
         emptyBox.setVisible(true);

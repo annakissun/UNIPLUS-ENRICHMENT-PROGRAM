@@ -3,6 +3,7 @@ package gui.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import model.Session;
+import model.Student;
 import structure.UniSystem;
 import util.AlertShow;
 
@@ -19,11 +20,11 @@ public class PrivateSessCTRL {
             AlertShow.showError("Invalid Code", "Please enter a join code");
             return;
         }
-        for (Session s : sys.getSessionManager().getSessions()) {
+        for (Session s : sys.getSessionManager().getAllSessions()) {
             if (s.getJoinCode() == null) continue;  // ✅ skip public sessions safely
             // ✅ code matched
             if (s.getJoinCode().equalsIgnoreCase(code)) {
-                boolean success = s.addStudent(sys.getAuthService().getCurrentUser());
+                boolean success = s.join((Student)sys.getAuthService().getCurrentUser());
                 if (success) {
                     AlertShow.showInfo("Joined Session", "You joined the private session successfully!");
                 } else {

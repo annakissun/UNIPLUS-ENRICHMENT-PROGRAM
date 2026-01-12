@@ -12,13 +12,22 @@ public class AuthService {
 
     public AuthService() {
         // ===== Default & dummy users =====
-        users.add(new User("System Admin", "admin@uni.edu", "admin", "admin123", "admin"));
-        users.add(new User("Dr John Lecturer", "john@uni.edu", "lecturer1", "lect123", "lecturer"));
-        users.add(new User("Alice Student", "alice@uni.edu", "student1", "stud123", "student"));
-        users.add(new User("Guest User", "guest@uni.edu", "guest1", "guest123", "guest"));
-        users.add(new Student("Muhammad Fahmi", "fahmi@gmail.com", "fahmi", "123", "student","fahmi",20,202441064));
-        users.add(new Student("khalid bin amin", "khalid@gmail", "1", "1", "Student", "khalid", 20, 20144890));
-        users.add(new Student("Iman", "imangmail", "iman", "1", "Student", "iman op", 20, 608016510));
+        users.add(new Student("Muhammad Fahmi", "fahmi@gmail.com", "fahmi", "123", "student", "fahmi", 20, 202441064));
+        users.add(new Student("Khalid bin Amin", "khalid@gmail.com", "khalid", "123", "student", "khalid", 20, 20144890));
+        users.add(new Student("Iman Omar", "iman@gmail.com", "iman", "123", "student", "iman", 20, 608016510));
+        users.add(new Student("Alice Tan", "alice@gmail.com", "alice", "123", "student", "alice", 20, 202341001));
+        users.add(new Student("Bob Lee", "bob@gmail.com", "bob", "123", "student", "bob", 20, 202341002));
+        users.add(new Student("Charlie Lim", "charlie@gmail.com", "charlie", "123", "student", "charlie", 20, 202341003));
+        users.add(new Student("David Ng", "david@gmail.com", "david", "123", "student", "david", 20, 202341004));
+        users.add(new Student("Ethan Chong", "ethan@gmail.com", "ethan", "123", "student", "ethan", 20, 202341005));
+        users.add(new Student("Farah Ali", "farah@gmail.com", "farah", "123", "student", "farah", 20, 202341006));
+        users.add(new Student("Grace Wong", "grace@gmail.com", "grace", "123", "student", "grace", 20, 202341007));
+        users.add(new Student("Hadi Hassan", "hadi@gmail.com", "hadi", "123", "student", "hadi", 20, 202341008));
+        users.add(new Student("Irene Lim", "irene@gmail.com", "irene", "123", "student", "irene", 20, 202341009));
+        users.add(new Student("Jason Tan", "jason@gmail.com", "jason", "123", "student", "jason", 20, 202341010));
+        users.add(new Student("Kelly Ng", "kelly@gmail.com", "kelly", "123", "student", "kelly", 20, 202341011));
+        users.add(new Student("Lina Omar", "lina@gmail.com", "lina", "123", "student", "lina", 20, 202341012));
+
     }
 
     // ===== SIGNUP =====
@@ -80,5 +89,17 @@ public class AuthService {
 
     public LinkedList<User> getAllUsers() {
         return users;
+    }
+
+    // NEW METHOD
+    public Student findStudentByUsername(String username) {
+        if (username == null) return null;
+
+        for (User u : users) {
+            if (u instanceof Student && u.getUsername().equals(username)) {
+                return (Student) u;
+            }
+        }
+        return null;
     }
 }

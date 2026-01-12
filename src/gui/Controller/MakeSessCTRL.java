@@ -39,14 +39,14 @@ public class MakeSessCTRL implements Navigable {
 
 
     private void loadSessions() {
-        if (sys.getSessionManager().getSessions().isEmpty()) {
+        if (sys.getSessionManager().getAllSessions().isEmpty()) {
             showEmpty();
             sessionContainer.getChildren().clear();
             return;
         }
 
         hideEmpty();
-        SessionCardRenderer.renderSessions(sessionContainer, sys.getSessionManager().getSessions(), true, false,false, sys);// ✅ editable (delete button shown)
+        SessionCardRenderer.renderSessions(sessionContainer, sys.getSessionManager().getAllSessions(), true, false,false, sys);// ✅ editable (delete button shown)
     }
 
     private void showEmpty() {

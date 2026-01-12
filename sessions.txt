@@ -1,1 +1,63 @@
-12|ki bin boo|MAAT|false|FB2|TEST|11:20|20144890,608016510
+SESSION|1|Muhammad Fahmi|ICT200|false|LT5|Lecture|4:30
+STUDENT|iman
+SESSION|3|Jason Tan|CSC248|false|HEP LAB 3|Lab|8:00
+STUDENT|jason
+SESSION|2|Alice Tan|MATH101|false|LT1|Lecture|9:00
+STUDENT|bob
+STUDENT|charlie
+SESSION|2|Bob Lee|PHY102|true|LT2|Lecture|10:00
+STUDENT|alice
+STUDENT|david
+SESSION|4|Charlie Lim|CHEM201|false|LT3|Lecture|11:00
+STUDENT|david
+STUDENT|ethan
+STUDENT|farah
+SESSION|3|David Ng|BIO150|true|LT4|Lecture|12:00
+STUDENT|ethan
+STUDENT|grace
+STUDENT|hadi
+SESSION|2|Ethan Chong|ENG101|false|LT5|Lecture|13:00
+STUDENT|farah
+SESSION|3|Farah Ali|HIST200|false|LT1|Lecture|14:00
+STUDENT|grace
+STUDENT|irene
+SESSION|1|Grace Wong|GEO100|true|LT2|Lecture|15:00
+STUDENT|hadi
+SESSION|3|Hadi Hassan|ART105|false|LT3|Lecture|16:00
+STUDENT|irene
+STUDENT|jason
+SESSION|2|Irene Lim|MUS101|false|LT4|Lecture|17:00
+STUDENT|jason
+STUDENT|kelly
+SESSION|1|Jason Tan|CSC249|false|LT5|Lab|18:00
+STUDENT|kelly
+SESSION|2|Kelly Ng|PHY103|true|HEP LAB 2|Lab|9:30
+STUDENT|lina
+STUDENT|fahmi
+SESSION|3|Lina Omar|MATH102|false|HEP LAB 1|Lab|10:30
+STUDENT|fahmi
+STUDENT|iman
+SESSION|2|Muhammad Fahmi|ICT201|false|LT1|Lecture|11:30
+STUDENT|iman
+STUDENT|bob
+SESSION|4|Alice Tan|CSC101|false|LT2|Lecture|12:30
+STUDENT|bob
+STUDENT|charlie
+STUDENT|david
+SESSION|1|Bob Lee|ENG102|false|LT3|Lecture|13:30
+STUDENT|alice
+SESSION|2|Charlie Lim|CHEM202|false|LT4|Lecture|14:30
+STUDENT|david
+STUDENT|ethan
+SESSION|3|David Ng|BIO151|false|LT5|Lecture|15:30
+STUDENT|ethan
+STUDENT|farah
+SESSION|1|Ethan Chong|ENG102|true|LT1|Lecture|16:30
+STUDENT|grace
+SESSION|2|Farah Ali|HIST201|false|LT2|Lecture|17:30
+STUDENT|hadi
+STUDENT|irene
+SESSION|3|Grace Wong|GEO101|false|LT3|Lecture|18:30
+STUDENT|kelly
+STUDENT|lina
+STUDENT|fahmi

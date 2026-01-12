@@ -1,35 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane stylesheets="@../style/style.css"
-           xmlns="http://javafx.com/javafx/25"
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="gui.Controller.JoinSessCTRL"
-           fx:id="rootPane">
+<StackPane fx:id="rootPane" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller.JoinSessCTRL">
    
-   <children>
-      <!-- Empty state message -->
-      <VBox fx:id="emptyBox" alignment="CENTER" maxHeight="400.0" maxWidth="900.0"
-            prefHeight="600.0" prefWidth="400.0" spacing="10"
-            style="-fx-padding: 40; -fx-background-color: #f5f5f5; -fx-background-radius: 20;">
-          <Label fx:id="Label" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Available Sessions">
-              <font>
-                  <Font size="26.0" />
-              </font>
-          </Label>
-          <Label fx:id="Label2" style="-fx-font-size: 18px; -fx-text-fill: #888;" text="No sessions available yet" />
-          <Button fx:id="refreshButton" onAction="#refreshSessions"
-                  style="-fx-background-color: linear-gradient(to right, #8DB9FF, #D3C2FF, #FFC1E8);
-                         -fx-text-fill: white; -fx-padding: 8 20;" text="Refresh Sessions" />
-      </VBox>
+   <!-- Main ScrollPane that wraps everything -->
+   <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: transparent; -fx-background-color: transparent;" vbarPolicy="AS_NEEDED">
+       <content>
+           <VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;">
+               
+               <!-- Empty state message - Centered -->
+               <VBox fx:id="emptyBox" alignment="CENTER" maxWidth="600.0" spacing="20" style="-fx-padding: 40; -fx-background-color: #f5f5f5; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
+                   <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #555;" text="Available Sessions">
+                       <font>
+                           <Font size="26.0" />
+                       </font>
+                   </Label>
+                   <Label style="-fx-font-size: 18px; -fx-text-fill: #888;" text="No sessions available yet" />
+                   <Button fx:id="refreshButton" onAction="#refreshSessions" style="-fx-background-color: linear-gradient(to right, #8DB9FF, #D3C2FF, #FFC1E8); -fx-text-fill: white; -fx-padding: 8 20; -fx-background-radius: 5;" text="Refresh Sessions" />
+               <VBox.margin>
+                  <Insets top="300.0" />
+               </VBox.margin>
+               </VBox>
 
-      <!-- Session cards container -->
-      <VBox fx:id="sessContainer" maxWidth="900.0" prefHeight="200.0" prefWidth="100.0"
-            spacing="15.0" style="-fx-padding: 40;" />
-   </children>
+               <!-- Session cards container -->
+               <VBox fx:id="sessContainer" maxWidth="900.0" spacing="15.0" style="-fx-padding: 20;" />
+               
+           </VBox>
+       </content>
+   </ScrollPane>
+   
+   <!-- Floating refresh button - Consistent styling -->
+   <Button fx:id="floatingRefreshBtn" onAction="#refreshSessions" prefHeight="40.0" prefWidth="43.0" style="-fx-background-color: white; -fx-background-radius: 5;" text="⟳" StackPane.alignment="TOP_RIGHT">
+       <StackPane.margin>
+           <Insets right="20.0" top="20.0" />
+       </StackPane.margin>
+      <font>
+         <Font name="System Bold" size="18.0" />
+      </font>
+   </Button>
 </StackPane>

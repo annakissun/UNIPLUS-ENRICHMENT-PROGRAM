@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 /**
  * Base User class.
  * Represents a system user such as Admin, Lecturer, or Student.
@@ -12,6 +14,7 @@ public class User {
     protected String username;
     protected String password; // Should be HASHED (handled in AuthService)
     protected String role;     // "admin", "lecturer", "student"
+    protected List <String> sessionCreated;
 
     // ===== CONSTRUCTORS =====
 
