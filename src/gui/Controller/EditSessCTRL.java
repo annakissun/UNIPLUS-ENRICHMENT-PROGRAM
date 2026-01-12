@@ -21,8 +21,7 @@ public class EditSessCTRL {
         this.session = s;
         this.sys = UniSystem.getInstance();
 
-        String currentUser =
-            sys.getAuthService().getCurrentUser().getUsername();
+        String currentUser = sys.getAuthService().getCurrentUser().getUsername();
 
         if (!session.canEdit(currentUser)) {
             showError("You are not allowed to edit this session.");

@@ -1,8 +1,7 @@
-package structure;
+package model;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import model.Student;
 
 /**
  * ADT: Waitlist Queue

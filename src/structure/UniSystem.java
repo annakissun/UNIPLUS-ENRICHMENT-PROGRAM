@@ -3,6 +3,7 @@ package structure;
 import services.*;
 import util.FileService;
 import model.Session;
+import model.SessionList;
 
 /**
  * Singleton for system-wide access

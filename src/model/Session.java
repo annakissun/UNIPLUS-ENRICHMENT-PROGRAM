@@ -1,10 +1,6 @@
 package model;
 
 import java.util.*;
-
-import structure.*;
-
-
 public class Session {
 
     private int capacity;

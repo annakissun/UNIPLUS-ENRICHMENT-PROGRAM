@@ -49,16 +49,9 @@ public class SignUpCTRL {
             if (success) {
 
                 AlertShow.showInfo("Sign Up Successfull! ", "Your Account have been created!");
-                // add actual signup logic here (validation, saving user, etc.)
-
-                // Load the main application layout (Root.fxml)
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/Login.fxml"));
                 Parent root = loader.load();
-
-                // Get current Stage
                 Stage stage = (Stage) this.root.getScene().getWindow();
-
-                // Replace the Scene root with the main app root
                 stage.getScene().setRoot(root);
             } else {
                 AlertShow.showError("Can't Sign", "Please complete all the required data");

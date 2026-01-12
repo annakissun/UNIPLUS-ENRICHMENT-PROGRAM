@@ -1,7 +1,7 @@
 package services;
 
 import model.Session;
-import structure.SessionList;
+import model.SessionList;
 import util.FileService;
 
 /**

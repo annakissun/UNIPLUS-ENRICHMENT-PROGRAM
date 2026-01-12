@@ -2,7 +2,6 @@ package util;
 
 import model.*;
 import services.AuthService;
-import structure.SessionList;
 
 import java.io.*;
 import java.util.*;

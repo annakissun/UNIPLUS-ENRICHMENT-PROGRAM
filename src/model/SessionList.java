@@ -1,7 +1,6 @@
-package structure;
+package model;
 
 import java.util.*;
-import model.Session;
 
 /**
  * ADT: Session List

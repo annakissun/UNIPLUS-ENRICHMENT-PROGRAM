@@ -1,28 +1,45 @@
+
+> To customize the folder structure in VS Code, edit `.vscode/settings.json`.
+
+---
+
+## Features
+
+- **User Management**: Register, authenticate, and manage Student/Admin accounts  
+- **Session Management**: Create, edit, delete, join, and cancel sessions  
+- **GUI Dashboard**: Dynamic views with real-time updates  
+- **Waitlist Support**: Automatic waitlist management for full sessions  
+- **File Persistence**: Save and load user/session data to files  
+- **Alerts & Pop-ups**: Inform users of errors, confirmations, and messages  
+
+---
+
 ## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+### Prerequisites
 
-## Folder Structure
+- **Java Development Kit (JDK) 17+**  
+- **JavaFX SDK** compatible with your JDK  
+- **VS Code** with the **Java Extension Pack** installed  
 
-The workspace contains two folders by default, where:
+### Setup
 
-- `src`: the folder to maintain sources
+1. Clone this repository:
 
-    inside the src :
-    
-    -asset (Image...)
-    -gui (Frame,Button)
-    -util (Auth,Create user)
-    -structure (System)
-    -model (User,Admin,Student)
-    -app (Main app)
+```bash
+git clone https://github.com/yourusername/uniplus-enrichment.git
+cd uniplus-enrichment
 
-- `lib`: the folder to maintain dependencies
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+---
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+# How to Run
 
-## Dependency Management
+Once the project is set up in VS Code:
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+1. Make sure the **JavaFX SDK** is correctly linked to your project:
+   - In VS Code, go to **Settings → Java → Project → Build Path → Add External JARs** and add the JavaFX SDK `lib` folder.
+2. Compile the project:
+   ```bash
+   javac -d bin src/app/App.java
+
