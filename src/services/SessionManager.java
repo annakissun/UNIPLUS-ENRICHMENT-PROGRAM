@@ -1,42 +1,73 @@
 package services;
 
-import model.*;
+import model.Session;
+import structure.SessionList;
 import util.FileService;
-import java.util.LinkedList;
 
+/**
+ * SessionManager manages all sessions.
+ * Uses SessionList wrapper for better OOP design.
+ */
 public class SessionManager {
 
-    private LinkedList<Session> sessions;
-    private Session currentSession;
+    private SessionList sessions;      // Now using SessionList wrapper
+    private Session currentSession;    // Currently selected session
 
     public SessionManager() {
-        sessions = new LinkedList<>(); // start empty
+        sessions = new SessionList();  // initialize wrapper
     }
 
-    public Session createSession(int capacity, String host, String subject,
-                                 boolean isPrivate, String location,
-                                 String desc, String time) {
+    /**
+     * Create a new session and add it to the session list
+     */
+    public Session createSession(int capacity, String host, String subject, boolean isPrivate, String location, String desc, String time) {
         Session session = new Session(capacity, host, subject, isPrivate, location, desc, time);
-        sessions.add(session);
-        FileService.saveSessions(sessions); // save immediately
+        sessions.addSession(session);   // use wrapper method
+        FileService.saveSessions(sessions.getAllSessions()); // save to file
         return session;
     }
 
+    /**
+     * Add an existing session (e.g., loaded from file)
+     */
     public void addSession(Session s) {
-        sessions.add(s);
-        FileService.saveSessions(sessions);
+        sessions.addSession(s);
+        FileService.saveSessions(sessions.getAllSessions());
     }
 
+    /**
+     * Remove a session
+     */
     public void removeSession(Session s) {
-        sessions.remove(s);
+        sessions.removeSession(s);
         if (s == currentSession) currentSession = null;
-        FileService.saveSessions(sessions);
+        FileService.saveSessions(sessions.getAllSessions());
     }
 
-    public LinkedList<Session> getSessions() {
-        return sessions;
+    /**
+     * Find a session by its join code
+     */
+    public Session findSessionByCode(String code) {
+        return sessions.findByCode(code);
     }
 
+    /**
+     * Get all sessions as a list
+     */
+    public java.util.List<Session> getAllSessions() {
+        return sessions.getAllSessions();
+    }
+
+    /**
+     * Get the number of sessions
+     */
+    public int getSessionCount() {
+        return sessions.size();
+    }
+
+    /**
+     * Set or get the currently active session
+     */
     public void setCurrentSession(Session s) {
         currentSession = s;
     }

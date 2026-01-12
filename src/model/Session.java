@@ -1,104 +1,117 @@
 package model;
 
+import structure.*;
+import util.FileService;
 import java.util.*;
-import services.CodeGenerator;
-import util.AlertShow;
 
 public class Session {
 
     private int capacity;
     private String host;
     private String subject;
+    private boolean isPrivate;
     private String location;
     private String description;
     private String time;
-    private String joinCode; // null if public
+    private String joinCode;
 
-    private LinkedList<Student> students = new LinkedList<>();
-    private Queue<Student> waitQueue = new LinkedList<>();
+    private JoinedList joinedList;
+    private WaitlistQueue waitlist;
 
-    public Session(int capacity,String host,String subject,boolean isPrivate,String location,String description,String time) {
-        if (capacity <= 0) throw new IllegalArgumentException("Capacity must be > 0");
-        if (host == null || host.trim().isEmpty()) throw new IllegalArgumentException("Host required");
-        if (subject == null || subject.trim().isEmpty()) throw new IllegalArgumentException("Subject required");
+    private boolean suppressSave = false; // for loading from file
 
+    public Session(int capacity, String host, String subject, boolean isPrivate,
+                   String location, String description, String time) {
         this.capacity = capacity;
         this.host = host;
         this.subject = subject;
+        this.isPrivate = isPrivate;
         this.location = location;
         this.description = description;
         this.time = time;
-        this.joinCode = isPrivate ? CodeGenerator.generateCode(6) : null;
+        this.joinCode = UUID.randomUUID().toString().substring(0, 6);
+
+        this.joinedList = new JoinedList();
+        this.waitlist = new WaitlistQueue();
     }
 
-    // ===== ENROLLMENT =====
-    public boolean addStudent(Student student) {
-        if (students.contains(student) || waitQueue.contains(student)) {
-            AlertShow.showInfo("Can't Join", "Already in session or waitlist");
-            return false;
+    // ===== JOIN SESSION =====
+    public boolean join(Student s) {
+        if (joinedList.contains(s) || waitlist.contains(s)) return false;
+
+        if (joinedList.size() < capacity) {
+            joinedList.add(s);
+        } else {
+            waitlist.enqueue(s);
         }
-        if (students.size() >= capacity) {
-            waitQueue.add(student);
-            AlertShow.showInfo("Waitlist", "Session full, added to waitlist");
-            saveState();
-            return false;
-        }
-        students.add(student);
-        saveState();
+
+        saveIfNeeded();
         return true;
     }
 
-    public boolean removeStudent(Student student) {
-        boolean removed = students.remove(student);
-        if (removed && !waitQueue.isEmpty()) {
-            students.add(waitQueue.poll());
+    // ===== LEAVE SESSION =====
+    public boolean leaveSession(Student s) {
+        boolean removed = joinedList.remove(s);
+        if (!removed) return false;
+
+        // Promote first student from waitlist if available
+        if (!waitlist.isEmpty()) {
+            Student next = waitlist.dequeue();
+            joinedList.add(next);
         }
-        boolean removedFromWaitlist = waitQueue.remove(student);
-        saveState();
-        return removed || removedFromWaitlist;
+
+        saveIfNeeded();
+        return true;
     }
 
-    // ===== SAVE STATE =====
-    private void saveState() {
-        // Save after any change
-        util.FileService.saveSessions(structure.UniSystem.getInstance().getSessionManager().getSessions());
+    // ===== INTERNAL USE =====
+    public void addFromFile(Student s) {
+        if (joinedList.size() < capacity) {
+            joinedList.add(s);
+        } else {
+            waitlist.enqueue(s);
+        }
+    }
+
+    // ===== AUTOMATIC SAVE =====
+    private void saveIfNeeded() {
+        if (!suppressSave) {
+            // Save ALL sessions from UniSystem to file
+            // This assumes UniSystem.getInstance().getSessionManager().getSessions() exists
+            FileService.saveSessions(UniSystem.getInstance().getSessionManager().getAllSessions());
+        }
     }
 
     // ===== GETTERS =====
     public int getCapacity() { return capacity; }
     public String getHost() { return host; }
     public String getSubject() { return subject; }
+    public boolean isPrivate() { return isPrivate; }
     public String getLocation() { return location; }
     public String getDescription() { return description; }
     public String getTime() { return time; }
     public String getJoinCode() { return joinCode; }
-    public boolean isPrivate() { return joinCode != null; }
-    public LinkedList<Student> getStudents() { return new LinkedList<>(students); }
-    public LinkedList<Student> getWaitlist() { return new LinkedList<>(waitQueue); }
 
-    // ===== USERNAME LISTS FOR FILE =====
+    public int getCurrentJoined() { return joinedList.size(); }
+    public List<Student> getJoinedListStudents() { return joinedList.getAll(); }
+    
+    public List<Student> getWaitlistStudents() {
+        return new ArrayList<>(waitlist.getAll()); // convert Queue -> List
+    }
+
+
     public List<String> getStudentNames() {
-        List<String> usernames = new ArrayList<>();
-        for (Student s : students) usernames.add(s.getUsername());
-        return usernames;
+        List<String> names = new ArrayList<>();
+        for (Student s : joinedList.getAll()) names.add(s.getUsername());
+        return names;
     }
 
     public List<String> getWaitlistNames() {
-        List<String> usernames = new ArrayList<>();
-        for (Student s : waitQueue) usernames.add(s.getUsername());
-        return usernames;
+        List<String> names = new ArrayList<>();
+        for (Student s : waitlist.getAll()) names.add(s.getUsername());
+        return names;
     }
 
-    // Returns the number of currently joined students
-    public int getCurrentJoined() {
-        return students.size();
-    }
-
-    public int getWaitlistCount() {
-        return waitQueue.size();
-    }
-
-    // ===== ADD FROM FILE =====
-    public void addJoined(Student s) { students.add(s); }
-    public void addWaitlist(Student s) { waitQueue.add(s); }
+    // ===== LOADING/FILE CONTROL =====
+    public void setSuppressSave(boolean suppress) { this.suppressSave = suppress; }
 }

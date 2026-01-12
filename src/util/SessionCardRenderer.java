@@ -6,15 +6,13 @@ import javafx.scene.layout.VBox;
 import model.Session;
 import model.Student;
 import structure.UniSystem;
-import java.util.LinkedList;
+import java.util.*;
 
 public final class SessionCardRenderer {
 
     private SessionCardRenderer() {}
 
-    public static void renderSessions(VBox container, LinkedList<Session> sessions,
-                                      boolean editable, boolean joinable, boolean cancelable,
-                                      UniSystem sys) {
+    public static void renderSessions(VBox container, List<Session> sessions,boolean editable, boolean joinable, boolean cancelable, UniSystem sys) {
         container.getChildren().clear();
         for (Session s : sessions) {
             container.getChildren().add(buildCard(s, container, editable, joinable, cancelable, sys));
@@ -59,7 +57,7 @@ public final class SessionCardRenderer {
             join.getStyleClass().add("join-button");
             join.setOnAction(e -> {
                 Student current = (Student) sys.getAuthService().getCurrentUser();
-                boolean success = s.addStudent(current);
+                boolean success = s.join(current);
                 if (!success) {
                     AlertShow.showError("Couldn't join session", "Please try again");
                 } else {
@@ -79,7 +77,7 @@ public final class SessionCardRenderer {
             cancel.getStyleClass().add("delete-button");
             cancel.setOnAction(e -> {
                 Student current = (Student) sys.getAuthService().getCurrentUser();
-                boolean success = s.removeStudent(current);
+                boolean success = s.leaveSession(current);
                 if (!success) {
                     AlertShow.showError("Couldn't leave session", "Please try again");
                 } else {

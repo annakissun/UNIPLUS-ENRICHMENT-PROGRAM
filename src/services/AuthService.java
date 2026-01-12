@@ -90,4 +90,16 @@ public class AuthService {
     public LinkedList<User> getAllUsers() {
         return users;
     }
+
+    // NEW METHOD
+    public Student findStudentByUsername(String username) {
+        if (username == null) return null;
+
+        for (User u : users) {
+            if (u instanceof Student && u.getUsername().equals(username)) {
+                return (Student) u;
+            }
+        }
+        return null;
+    }
 }

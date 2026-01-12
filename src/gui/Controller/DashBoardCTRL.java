@@ -36,7 +36,7 @@ public class DashBoardCTRL {
     sessContainer.getChildren().clear(); // clear previous cards
 
     // Filter sessions that the current user has joined
-    var joinedSessions = sys.getSessionManager().getSessions().stream().filter(s -> s.getStudents().contains(sys.getAuthService().getCurrentUser())).toList();
+    var joinedSessions = sys.getSessionManager().getAllSessions().stream().filter(s -> s.getJoinedListStudents().contains(sys.getAuthService().getCurrentUser())).toList();
 
         if (joinedSessions.isEmpty()) {
             showEmpty();

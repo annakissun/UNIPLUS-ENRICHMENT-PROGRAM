@@ -1,31 +1,43 @@
 package structure;
 
-import java.util.List;
-import services.*;
+import services.AuthService;
+import services.SessionManager;
 import util.FileService;
 import model.Session;
 
+/**
+ * Singleton for system-wide access
+ */
 public class UniSystem {
 
     private static UniSystem instance;
-    private SessionManager sessionManager;
+
     private AuthService authService;
+    private SessionManager sessionManager;
 
     private UniSystem() {
-        authService = new AuthService();       // initialize users first
-        sessionManager = new SessionManager(); // empty first
+        authService = new AuthService();       
+        sessionManager = new SessionManager(); // empty manager
 
-        List<Session> loaded = FileService.loadSessions(authService);
-        for (Session s : loaded) {
-            sessionManager.addSession(s);
+        // Load sessions safely
+        SessionList loadedSessions = FileService.loadSessions(authService);
+        for (Session s : loadedSessions.getAllSessions()) {
+            sessionManager.addSession(s); // add to manager
         }
     }
 
     public static UniSystem getInstance() {
-        if (instance == null) instance = new UniSystem();
+        if (instance == null) {
+            instance = new UniSystem();
+        }
         return instance;
     }
 
-    public SessionManager getSessionManager() { return sessionManager; }
-    public AuthService getAuthService() { return authService; }
+    public AuthService getAuthService() {
+        return authService;
+    }
+
+    public SessionManager getSessionManager() {
+        return sessionManager;
+    }
 }

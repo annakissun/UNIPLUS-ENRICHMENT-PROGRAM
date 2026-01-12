@@ -1,21 +1,63 @@
-12|Iman Omar|ICT200|false|LT5|Bring test pad|12.00|david,fahmi|
-1|Muhammad Fahmi|Math101|false|Room A1|Intro to Algebra|08:00|alice,bob|charlie,david
-2|Khalid bin Amin|Physics102|true|Lab B2|Mechanics experiment|09:00|ethan,farah|grace,hadi
-3|Iman Omar|ICT200|false|LT5|Bring test pad|12:00|david,fahmi|alice,charlie
-4|Alice Tan|Chem101|true|Lab C1|Chemical reactions demo|10:00|bob,grace|david,ethan
-5|Bob Lee|Bio201|false|Room A3|Human anatomy|11:00|charlie,farah|alice,hadi
-6|Charlie Lim|Math102|false|Room B1|Calculus practice|08:30|david,iman|bob,kelly
-7|David Ng|ICT201|true|Lab B3|Networking basics|09:30|alice,kelly|fahmi,jason
-8|Ethan Chong|Physics201|false|Room C2|Optics lab|13:00|hadi,lina|farah,iman
-9|Farah Ali|Chem102|true|Lab A2|Acid-base titration|10:30|grace,alice|bob,charlie
-10|Grace Wong|Bio202|false|Room B4|Plant biology|11:30|ethan,iman|david,kelly
-11|Hadi Hassan|Math201|true|Room C3|Statistics intro|12:30|fahmi,farah|grace,jason
-12|Irene Lim|ICT202|false|Lab D1|Programming basics|14:00|lina,jason|alice,hadi
-13|Jason Tan|Physics203|true|Lab C4|Thermodynamics|15:00|bob,iman|farah,grace
-14|Kelly Ng|Math203|false|Room D2|Probability|08:15|charlie,david|alice,ethan
-15|Lina Omar|Chem201|true|Lab B5|Organic synthesis|09:45|fahmi,grace|bob,iman
-16|Muhammad Fahmi|ICT203|false|Room A5|Database intro|10:15|alice,jason|lina,farah
-17|Khalid bin Amin|Bio203|true|Room C5|Genetics|11:45|david,ethan|hadi,kelly
-18|Iman Omar|Math204|false|Room D3|Linear Algebra|12:45|bob,charlie|fahmi,alice
-19|Alice Tan|Physics204|true|Lab D4|Electric circuits|13:30|grace,lina|ethan,david
-20|Bob Lee|ICT204|false|Lab A3|Networking advanced|14:30|jason,iman|farah,hadi
+SESSION|1|Muhammad Fahmi|ICT200|false|LT5|Lecture|4:30
+STUDENT|iman
+SESSION|3|Jason Tan|CSC248|false|HEP LAB 3|Lab|8:00
+STUDENT|jason
+SESSION|2|Alice Tan|MATH101|false|LT1|Lecture|9:00
+STUDENT|bob
+STUDENT|charlie
+SESSION|2|Bob Lee|PHY102|true|LT2|Lecture|10:00
+STUDENT|alice
+STUDENT|david
+SESSION|4|Charlie Lim|CHEM201|false|LT3|Lecture|11:00
+STUDENT|david
+STUDENT|ethan
+STUDENT|farah
+SESSION|3|David Ng|BIO150|true|LT4|Lecture|12:00
+STUDENT|ethan
+STUDENT|grace
+STUDENT|hadi
+SESSION|2|Ethan Chong|ENG101|false|LT5|Lecture|13:00
+STUDENT|farah
+SESSION|3|Farah Ali|HIST200|false|LT1|Lecture|14:00
+STUDENT|grace
+STUDENT|irene
+SESSION|1|Grace Wong|GEO100|true|LT2|Lecture|15:00
+STUDENT|hadi
+SESSION|3|Hadi Hassan|ART105|false|LT3|Lecture|16:00
+STUDENT|irene
+STUDENT|jason
+SESSION|2|Irene Lim|MUS101|false|LT4|Lecture|17:00
+STUDENT|jason
+STUDENT|kelly
+SESSION|1|Jason Tan|CSC249|false|LT5|Lab|18:00
+STUDENT|kelly
+SESSION|2|Kelly Ng|PHY103|true|HEP LAB 2|Lab|9:30
+STUDENT|lina
+STUDENT|fahmi
+SESSION|3|Lina Omar|MATH102|false|HEP LAB 1|Lab|10:30
+STUDENT|fahmi
+STUDENT|iman
+SESSION|2|Muhammad Fahmi|ICT201|false|LT1|Lecture|11:30
+STUDENT|iman
+STUDENT|bob
+SESSION|4|Alice Tan|CSC101|false|LT2|Lecture|12:30
+STUDENT|bob
+STUDENT|charlie
+STUDENT|david
+SESSION|1|Bob Lee|ENG102|false|LT3|Lecture|13:30
+STUDENT|alice
+SESSION|2|Charlie Lim|CHEM202|false|LT4|Lecture|14:30
+STUDENT|david
+STUDENT|ethan
+SESSION|3|David Ng|BIO151|false|LT5|Lecture|15:30
+STUDENT|ethan
+STUDENT|farah
+SESSION|1|Ethan Chong|ENG102|true|LT1|Lecture|16:30
+STUDENT|grace
+SESSION|2|Farah Ali|HIST201|false|LT2|Lecture|17:30
+STUDENT|hadi
+STUDENT|irene
+SESSION|3|Grace Wong|GEO101|false|LT3|Lecture|18:30
+STUDENT|kelly
+STUDENT|lina
+STUDENT|fahmi
