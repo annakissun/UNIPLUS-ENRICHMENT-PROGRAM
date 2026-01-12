@@ -1,15 +1,13 @@
 package gui.Controller;
 
-import util.*;
-
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import structure.UniSystem;
+import javafx.scene.layout.*;
+import javafx.scene.shape.*;
+import javafx.stage.*;
+import structure.*;
+import util.*;
 
 public class SignUpCTRL {
 

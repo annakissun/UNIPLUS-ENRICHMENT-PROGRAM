@@ -1,15 +1,13 @@
 package gui.Controller;
 
-import javafx.animation.TranslateTransition;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.util.Duration;
+import javafx.animation.*;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.scene.shape.*;
+import javafx.util.*;
 import util.*;
-
 public class RootCtrl implements Navigator {
     //Data members
     @FXML private StackPane root;
