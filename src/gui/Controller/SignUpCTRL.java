@@ -1,15 +1,13 @@
 package gui.Controller;
 
-import util.*;
-
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import structure.UniSystem;
+import javafx.scene.layout.*;
+import javafx.scene.shape.*;
+import javafx.stage.*;
+import structure.*;
+import util.*;
 
 public class SignUpCTRL {
 
@@ -51,16 +49,9 @@ public class SignUpCTRL {
             if (success) {
 
                 AlertShow.showInfo("Sign Up Successfull! ", "Your Account have been created!");
-                // add actual signup logic here (validation, saving user, etc.)
-
-                // Load the main application layout (Root.fxml)
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/Login.fxml"));
                 Parent root = loader.load();
-
-                // Get current Stage
                 Stage stage = (Stage) this.root.getScene().getWindow();
-
-                // Replace the Scene root with the main app root
                 stage.getScene().setRoot(root);
             } else {
                 AlertShow.showError("Can't Sign", "Please complete all the required data");

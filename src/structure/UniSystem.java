@@ -1,9 +1,9 @@
 package structure;
 
-import services.AuthService;
-import services.SessionManager;
+import services.*;
 import util.FileService;
 import model.Session;
+import model.SessionList;
 
 /**
  * Singleton for system-wide access

@@ -1,9 +1,7 @@
 package gui.Controller;
 
 import javafx.fxml.FXML;
-import util.Navigable;
-import util.Navigator;
-
+import util.*;
 public class SideBarCTRL implements Navigable {
     private Navigator navigator;
 

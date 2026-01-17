@@ -2,9 +2,8 @@ package gui.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import model.Session;
-import model.Student;
-import structure.UniSystem;
+import model.*;
+import structure.*;
 import util.AlertShow;
 
 public class PrivateSessCTRL {

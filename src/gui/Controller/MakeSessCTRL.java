@@ -3,10 +3,7 @@ package gui.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import structure.UniSystem;
-import util.Navigable;
-import util.Navigator;
-import util.SessionCardRenderer;
-
+import util.*;
 
 public class MakeSessCTRL implements Navigable {
 
